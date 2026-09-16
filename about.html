@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Scribe</title>
+<meta name="description" content="Why we built a meeting tool that reads today's call against every call before it, and what we will not trade away to do it.">
+<meta name="theme-color" content="#FBFAF6">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About — Scribe">
+<meta property="og:description" content="Why we built a meeting tool that reads today's call against every call before it, and what we will not trade away to do it.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<!-- Sentient is the display face used by the design. It is loaded from
+     Fontshare; if it cannot be reached, the self-hosted Source Serif 4 in
+     base.css takes over with matched metrics, so nothing reflows. -->
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=sentient@300,400,500&amp;display=swap">
+
+<link rel="preload" href="assets/fonts/onest-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/source-serif-300.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<script>document.documentElement.classList.remove('no-js');</script>
+</head>
+<body>
+<svg class="sr-only" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="i-logo" viewBox="0 0 24 24"><path d="M12 3a4 4 0 0 0-4 4v5a4 4 0 0 0 8 0V7a4 4 0 0 0-4-4Z"/><path d="M5 11.5A7 7 0 0 0 19 11.5"/><path d="M12 18.5V21"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12.5 5 5L20 6.5"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.6 2.6L16 9"/></symbol>
+<symbol id="i-check-square" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="m8 12 2.6 2.6L16 9.2"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.4 15.4 4.6 4.6"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3.5"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2.5 2.5 0 0 1 2.5-2.5h3.2l2 2.5h7.8A2.5 2.5 0 0 1 21 9.5v7A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5Z"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3.5 12.5 8.5 4.7 8.5-4.7"/><path d="m3.5 16.8 8.5 4.7 8.5-4.7"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><path d="M12 3.2 19 7.1"/><path d="M12 3.2a8.8 8.8 0 1 1-8.4 6.1"/><path d="M12 7.6a4.4 4.4 0 1 1-4.1 2.8"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24"><path d="M3 8h6"/><path d="M6.5 5 9.5 8l-3 3"/><path d="M21 16h-6"/><path d="M17.5 13 14.5 16l3 3"/><path d="M12 3v4"/><path d="M12 17v4"/></symbol>
+<symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="8" y="2.5" width="8" height="4" rx="1.8"/><path d="M8 4.5H6A2 2 0 0 0 4 6.5v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-13a2 2 0 0 0-2-2h-2"/><path d="M8.5 11.5h7M8.5 15.5h4.5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2.8 8 3v6c0 4.8-3.4 8.1-8 9.4-4.6-1.3-8-4.6-8-9.4v-6Z"/><path d="m8.6 11.8 2.4 2.4 4.4-4.8"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10" width="15" height="11" rx="3"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></symbol>
+<symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="M6.5 19a4.5 4.5 0 0 1-.4-9A6.3 6.3 0 0 1 15 7.4"/><path d="M17.3 10.2A3.8 3.8 0 0 1 17.8 19H10"/><path d="M3.5 3.5 20.5 20.5"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 6.5h16"/><path d="M9.5 6.5V5a1.6 1.6 0 0 1 1.6-1.6h1.8A1.6 1.6 0 0 1 14.5 5v1.5"/><path d="m6.5 6.5.9 12.6A1.9 1.9 0 0 0 9.3 21h5.4a1.9 1.9 0 0 0 1.9-1.9l.9-12.6"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13.4 2.5 4.5 13.6h6.2L10 21.5l9-11.1h-6.3Z"/></symbol>
+<symbol id="i-sparkle" viewBox="0 0 24 24"><path d="m9.8 3 2 5.2 5.2 2-5.2 2-2 5.2-2-5.2-5.2-2 5.2-2Z"/><path d="m17.8 14.2.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9Z"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9.5" cy="8" r="3.6"/><path d="M3 20a6.5 6.5 0 0 1 13 0"/><path d="M16.5 4.9a3.6 3.6 0 0 1 0 6.9"/><path d="M18.3 19.9a5.2 5.2 0 0 0-2.1-4.1"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 9.8h17M8.5 2.8v4M15.5 2.8v4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.8"/><path d="M12 6.8V12l3.5 2.3"/></symbol>
+<symbol id="i-bar-chart" viewBox="0 0 24 24"><path d="M4 20v-6M12 20V5M20 20v-9"/></symbol>
+<symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.6"/><path d="M6.5 9.8h.01M10 9.8h.01M13.5 9.8h.01M17 9.8h.01M7.5 14.2h9"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6 18 18M18 6 6 18"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.2 18.5 12 8 18.8Z"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.8"/><path d="M12 7.4v5.2"/><circle cx="12" cy="16.4" r=".9" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a3.8 3.8 0 0 0 5.7.4l3-3a4 4 0 0 0-5.7-5.7l-1.6 1.6"/><path d="M14 10a3.8 3.8 0 0 0-5.7-.4l-3 3a4 4 0 0 0 5.7 5.7l1.6-1.6"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.2A2 2 0 0 1 6 3.2h12a2 2 0 0 1 2 2v13.6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8 7.8h8M8 12h8M8 16.2h4.6"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v11"/><path d="m7.6 10.4 4.4 4.4 4.4-4.4"/><path d="M4 20h16"/></symbol>
+<symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2.8" y="4" width="18.4" height="13" rx="2.6"/><path d="M8.5 21h7M12 17v4"/></symbol>
+<symbol id="i-video" viewBox="0 0 24 24"><rect x="2.8" y="6" width="12.5" height="12" rx="2.8"/><path d="m15.3 11.2 5.9-3.4v8.4l-5.9-3.4Z"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 12.4a7.9 7.9 0 0 1-8.5 7.9 9 9 0 0 1-2.6-.4L4 21.5l1.6-4.6a7.6 7.6 0 0 1-1.1-4 7.9 7.9 0 0 1 8.4-7.4 8 8 0 0 1 7.6 6.9Z"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2.4 2.4 0 0 0-2.4 2.4v13.2A2.4 2.4 0 0 0 7 21h10a2.4 2.4 0 0 0 2.4-2.4V8.4Z"/><path d="M14 3v5.4h5.4"/><path d="M8.4 13h7M8.4 16.6h4.6"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.8"/><path d="m3.8 7.2 7.1 5a2 2 0 0 0 2.2 0l7.1-5"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2.4"/><path d="M10 2.5v4M14 2.5v4M10 17.5v4M14 17.5v4M2.5 10h4M2.5 14h4M17.5 10h4M17.5 14h4"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.8-6.6 10-6.6S22 12 22 12s-3.8 6.6-10 6.6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.8"/><path d="M3.4 12h17.2"/><path d="M12 3.2a13.5 13.5 0 0 1 0 17.6 13.5 13.5 0 0 1 0-17.6Z"/></symbol>
+<symbol id="i-x-social" viewBox="0 0 24 24"><path d="M4 4h3.9l4.4 6 5-6H20l-6.6 7.9L20.6 20h-3.9l-4.7-6.4L6.6 20H4.2l7-8.4Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M5.2 8.6h2.9V20H5.2Zm1.4-4.6a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4ZM10.4 8.6h2.8v1.6a3.1 3.1 0 0 1 2.8-1.5c2.5 0 3.6 1.6 3.6 4.1V20h-2.9v-6c0-1.5-.5-2.3-1.7-2.3s-1.9.8-1.9 2.3v6h-2.8Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2.6a9.4 9.4 0 0 0-3 18.3c.5.1.6-.2.6-.5v-1.7c-2.6.6-3.2-1.2-3.2-1.2-.4-1.1-1-1.4-1-1.4-.9-.6 0-.6 0-.6a2 2 0 0 1 1.5 1 2.1 2.1 0 0 0 2.8.8 2 2 0 0 1 .6-1.3c-2.1-.2-4.3-1-4.3-4.6a3.6 3.6 0 0 1 1-2.5 3.4 3.4 0 0 1 .1-2.5s.8-.2 2.6 1a9 9 0 0 1 4.7 0c1.8-1.2 2.6-1 2.6-1a3.4 3.4 0 0 1 .1 2.5 3.6 3.6 0 0 1 1 2.5c0 3.6-2.2 4.4-4.3 4.6a2.3 2.3 0 0 1 .7 1.8v2.6c0 .3.1.6.6.5A9.4 9.4 0 0 0 12 2.6Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="mark-1" viewBox="0 0 24 24"><path d="M12 3 21 20H3Z"/><path d="M8.8 14.2h6.4"/></symbol>
+<symbol id="mark-2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 3.4v17.2M3.4 12h17.2"/></symbol>
+<symbol id="mark-3" viewBox="0 0 24 24"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="5"/><path d="M12 8v8M8 12h8"/></symbol>
+<symbol id="mark-4" viewBox="0 0 24 24"><path d="m12 2.6 9.4 9.4-9.4 9.4L2.6 12Z"/><circle cx="12" cy="12" r="2.6"/></symbol>
+<symbol id="mark-5" viewBox="0 0 24 24"><path d="M4 19V7.5L12 3l8 4.5V19"/><path d="M4 19h16M9.5 19v-5.5h5V19"/></symbol>
+<symbol id="mark-6" viewBox="0 0 24 24"><path d="M2.8 14.4c2.4-3.6 4.3-3.6 6.6 0s4.2 3.6 6.6 0 4.2-3.6 5.2-1.8"/><path d="M2.8 9c2.4-3.6 4.3-3.6 6.6 0"/></symbol>
+<symbol id="mark-7" viewBox="0 0 24 24"><path d="m12 2.8 2.7 6.5 6.5 2.7-6.5 2.7-2.7 6.5-2.7-6.5L2.8 12l6.5-2.7Z"/></symbol>
+<symbol id="mark-8" viewBox="0 0 24 24"><path d="M5 20V6a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v14"/><path d="M5 12h14M9.5 20v-4.5h5V20"/></symbol>
+</defs></svg>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html" aria-label="Scribe — home">
+      <span class="brand__mark"><svg class="icon" aria-hidden="true"><use href="#i-logo"></use></svg></span>
+      Scribe
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <div class="nav__item">
+        <a class="nav__link" href="features.html">
+          Product <svg class="chev" aria-hidden="true"><use href="#i-chevron-down"></use></svg>
+        </a>
+        <div class="nav__menu">
+          <a href="features.html">Features<span>Project memory, notes, dictation</span></a>
+          <a href="index.html#use-cases">Use cases<span>How teams run it day to day</span></a>
+          <a href="index.html#security">Security<span>What stays on your Mac</span></a>
+        </div>
+      </div>
+      <a class="nav__link" href="integrations.html">Integrations</a>
+      <a class="nav__link" href="pricing.html">Pricing</a>
+      <div class="nav__item">
+        <a class="nav__link" href="about.html" aria-current="page">
+          Company <svg class="chev" aria-hidden="true"><use href="#i-chevron-down"></use></svg>
+        </a>
+        <div class="nav__menu">
+          <a href="about.html">About<span>Why we built Scribe</span></a>
+          <a href="contact.html">Contact<span>Talk to a person</span></a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="nav__signin" href="contact.html">Sign in</a>
+      <a class="btn btn--primary" href="pricing.html">Try Scribe Free</a>
+      <button class="nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="features.html">Features</a>
+  <a href="index.html#use-cases">Use cases</a>
+  <a href="integrations.html">Integrations</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a class="btn btn--primary btn--lg btn--block" href="pricing.html">Try Scribe Free</a>
+</div>
+
+<main id="main">
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow is-centred" data-reveal>About</span>
+    <h1 class="h1" data-split data-split-step="44">We built Scribe because<br><span class="soft">we kept forgetting.</span></h1>
+    <p class="lead" data-reveal data-reveal-delay="150">Not the meetings — those are easy to record. What gets forgotten is what a project agreed three weeks ago, and how quietly it stopped being true.</p>
+  </div>
+</section>
+
+<section class="section section--flush-top" id="story">
+  <div class="wrap">
+    <div class="split" data-reveal="soft">
+      <div class="split__copy">
+        <span class="eyebrow">The problem</span>
+        <h2 class="h4">Transcripts are not <span class="soft">memory.</span></h2>
+        <p>
+          Every meeting tool will hand you a transcript. Almost none of them will tell you that the number in
+          today&rsquo;s call is not the number in the sheet you are about to send, because that would mean
+          reading this call against all the others — which is exactly the work nobody has time for.
+        </p>
+        <p class="body-text" style="max-width:44ch">
+          Scribe does that reading. It is the only reason the product exists, and everything else it does —
+          recording, notes, tasks, dictation — is in service of having something to read.
+        </p>
+      </div>
+      <div class="split__media">
+        <div class="shot shot--pad">
+          <img class="shot__bg" src="assets/img/bg/dusk.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="shot__fg" src="assets/img/app/watch-panel.webp" alt="Two lines that disagree, shown side by side in the Scribe watchout panel" width="1600" height="1000" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section band">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">What we believe</span>
+      <h2 class="h2" data-split>Three things we<br><span class="soft">will not trade away.</span></h2>
+    </div>
+    <div class="values" style="margin-top:clamp(30px,3.6vw,48px)" data-reveal="group" data-reveal-step="100">
+      <div class="value">
+        <span class="icon-tile icon-tile--accent"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg></span>
+        <b>Local by default</b>
+        <p>The interesting version of this product is the one that does not need to upload your calls. We built that one first.</p>
+      </div>
+      <div class="value">
+        <span class="icon-tile icon-tile--accent"><svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg></span>
+        <b>Show the evidence</b>
+        <p>Scribe never just asserts. Every watchout, decision and answer comes with the line and the timestamp behind it.</p>
+      </div>
+      <div class="value">
+        <span class="icon-tile icon-tile--accent"><svg class="icon" aria-hidden="true"><use href="#i-scale"></use></svg></span>
+        <b>Quiet until it matters</b>
+        <p>Software that interrupts constantly gets ignored. Scribe stays out of the way until it has something worth saying.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">How we got here</span>
+      <h2 class="h2" data-split>A short history<br><span class="soft">of a long list.</span></h2>
+    </div>
+    <ul class="timeline" style="margin-top:clamp(26px,3vw,40px)" data-reveal="group" data-reveal-step="90">
+      <li>
+        <span class="when">Early 2025</span>
+        <div><b>A spreadsheet of contradictions</b><p>We started keeping a list of the times a project went wrong because two calls disagreed and nobody noticed. It got long enough to be a product.</p></div>
+      </li>
+      <li>
+        <span class="when">Late 2025</span>
+        <div><b>The first watchout</b><p>The prototype read one call against a folder of earlier ones and found a seat count that had quietly moved from 250 to 400. That was the day it stopped being a note-taker.</p></div>
+      </li>
+      <li>
+        <span class="when">Early 2026</span>
+        <div><b>On-device dictation</b><p>Recording is only half of the time spent typing things people said. The hotkey came next, and it runs locally because the alternative was unacceptable to the people we most wanted to use it.</p></div>
+      </li>
+      <li>
+        <span class="when">Now</span>
+        <div><b>Private beta</b><p>Scribe is in the hands of a few hundred people who spend their week on calls. The roadmap is mostly their list, in their order.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cta-card" data-reveal="soft">
+      <div class="cta-card__body">
+        <h2 class="h3" data-split>Come and break it<br><span class="soft">for us.</span></h2>
+        <p>The beta is open and the feedback loop is short. If Scribe misses something on your calls, we want to know which call.</p>
+        <a class="btn btn--primary btn--lg" href="contact.html">Get in touch</a>
+      </div>
+      <div class="cta-card__media">
+        <img class="shot__bg" src="assets/img/bg/sage.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="shot__fg" src="assets/img/app/watchouts.webp" alt="The watchouts tab of a meeting, listing a conflict, a discrepancy and an open question" width="1600" height="1000" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="index.html">
+          <span class="brand__mark"><svg class="icon" aria-hidden="true"><use href="#i-logo"></use></svg></span>
+          Scribe
+        </a>
+        <p class="footer__blurb">Meeting notes that remember the project — and tell you when something no longer adds up.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Scribe on X"><svg aria-hidden="true"><use href="#i-x-social"></use></svg></a>
+          <a href="#" aria-label="Scribe on LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"></use></svg></a>
+          <a href="#" aria-label="Scribe on GitHub"><svg aria-hidden="true"><use href="#i-github"></use></svg></a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Product</h4>
+        <a href="features.html">Features</a>
+        <a href="index.html#use-cases">Use cases</a>
+        <a href="integrations.html">Integrations</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="about.html#story">Our story</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html">Careers</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Resources</h4>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#security">Security</a>
+        <a href="contact.html">Help centre</a>
+        <a href="contact.html">Changelog</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html#data">Data handling</a>
+        <a href="terms.html#licence">Licence</a>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; <span data-year>2026</span> Scribe. All rights reserved.</span>
+      <span>A product of <a href="https://aithinkers.com">Aithinkers</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/reveal.js"></script>
+<script src="assets/js/stack.js"></script>
+<script src="assets/js/context-scene.js"></script>
+<script src="assets/js/ui.js"></script>
+</body>
+</html>

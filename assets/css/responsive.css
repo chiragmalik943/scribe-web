@@ -1,0 +1,162 @@
+/* ============================================================================
+   responsive.css — breakpoint overrides. Loaded last so it always wins.
+   Breakpoints: 1180 (tablet landscape), 900 (tablet), 680 (phone), 430 (small)
+   ========================================================================== */
+
+@media (max-width: 1180px) {
+  :root { --maxw: 100%; }
+
+  .hero__grid { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); }
+  .stack-card { grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr); }
+  .usecase__panel { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); }
+  .result-card { grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr); }
+
+  .footer__top { grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); row-gap: 34px; }
+}
+
+@media (max-width: 1000px) {
+  .nav__links { display: none; }
+  .nav__signin { display: none; }
+  .nav__toggle { display: flex; }
+  .nav__inner { justify-content: space-between; }
+  .nav__actions { margin-left: auto; }
+
+  .pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 34px; }
+  .pillars li:nth-child(3) { border-left: 0; }
+  .pillars li:nth-child(odd) { border-left: 0; }
+  .pillars li:nth-child(even) { border-left: 1px solid var(--line); }
+
+  .testimonials__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .testimonials__cols > :nth-child(3) { display: none; }
+
+  .integrations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  :root { --nav-h: 64px; }
+
+  /* less scroll distance on a short screen, and the copy needs the room */
+  .ctx__rail { height: 440vh; }
+  .ctx__copy .h2 { max-width: 560px; }
+  .ctx__slot { height: 3.4em; }
+
+  .hero { padding-block: 34px 44px; }
+  .hero__grid { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  .hero__copy .lead { max-width: 52ch; }
+  .hero__media .shot { aspect-ratio: 16 / 11; }
+
+  /* one column: a tall square of backdrop around a small card reads as empty,
+     so the frames get wider and the floating cards get bigger */
+  .trio { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .trio__item { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .trio__item .shot { aspect-ratio: 16 / 8.6; }
+  .trio__item .chip-shot { width: min(100%, 430px); }
+
+  /* the stack flattens into ordinary cards — sticky stacking needs the height */
+  .stack-panel { position: static; height: auto; display: block; }
+  .stack-panel + .stack-panel { margin-top: 18px; }
+  .stack-card {
+    grid-template-columns: minmax(0, 1fr);
+    transform: none !important;
+    box-shadow: none;
+  }
+  .stack-card__media { min-height: 0; aspect-ratio: 16 / 9.4; }
+  .stack-card__media .chip-shot { width: min(100%, 460px); }
+  .stack-card__body { padding: 24px 20px 28px; }
+  .stack-card__body .h4 { max-width: none; }
+
+  .usecase__panel { grid-template-columns: minmax(0, 1fr); }
+  .usecase__copy { padding: 20px 14px 4px; }
+  .usecase__copy .h4 { max-width: none; }
+  .usecase__media {
+    margin-right: 0;
+    border-radius: var(--r-sm);
+    min-height: 0;
+    aspect-ratio: 16 / 11;
+  }
+
+  .plans { grid-template-columns: minmax(0, 1fr); }
+  .plan--featured { order: -1; }
+
+  .result-card { grid-template-columns: minmax(0, 1fr); }
+  .result-card__media { min-height: 0; aspect-ratio: 16 / 10; }
+  .result-card__body { padding: 22px 18px 26px; }
+  .result-quote { max-width: none; }
+
+  .cta-card { grid-template-columns: minmax(0, 1fr); }
+  .cta-card__body { padding: 26px 20px 6px; }
+  .cta-card__body .h3, .cta-card__body p { max-width: none; }
+  .cta-card__media { min-height: 0; aspect-ratio: 16 / 9; }
+
+  .split, .split + .split { grid-template-columns: minmax(0, 1fr); }
+  .split--flip .split__media { order: 0; }
+  .split__copy .h4, .split__copy > p { max-width: none; }
+
+  .contact { grid-template-columns: minmax(0, 1fr); }
+
+  .timeline li { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+}
+
+@media (max-width: 680px) {
+  .section { padding-block: 54px; }
+
+  .ctx__rail { height: 380vh; }
+  .ctx__copy { top: calc(var(--nav-h) + 18px); }
+  .ctx__copy .h2 { max-width: 100%; }
+  .ctx__slot { height: 4.2em; margin-top: 14px; }
+
+  /* at phone width an app screenshot is unreadable however it is cropped, so
+     show the whole window rather than a zoomed corner of it */
+  .hero__media .shot__fg,
+  .usecase__media .shot__fg,
+  .cta-card__media .shot__fg,
+  .split__media .shot__fg { width: 112%; top: 6%; left: 6%; }
+  .hero__media .shot { aspect-ratio: 16 / 12; }
+  .section--tight { padding-block: 40px; }
+
+  .h1 { font-size: clamp(32px, 8.4vw, 40px); }
+  .h2 { font-size: clamp(28px, 7.6vw, 36px); }
+  .h3 { font-size: clamp(25px, 6.8vw, 32px); }
+  .h4 { font-size: clamp(21px, 5.6vw, 26px); }
+
+  .hero__cta .btn, .page-hero__cta .btn { flex: 1 1 auto; }
+  .announce { font-size: 14px; gap: 9px; }
+
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: minmax(0, 1fr); }
+
+  .pillars { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .pillars li { border-left: 0 !important; padding: 24px 0; }
+  .pillars li + li { border-top: 1px solid var(--line); }
+  .pillars .icon-tile { margin-bottom: 16px; }
+
+  .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+
+  .testimonials__cols { grid-template-columns: minmax(0, 1fr); }
+  .testimonials__cols > :nth-child(2) { display: none; }
+  .vmarquee { height: 480px; }
+
+  .integrations, .values { grid-template-columns: minmax(0, 1fr); }
+
+  .acc-cols { grid-template-columns: minmax(0, 1fr) !important; }
+
+  .footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer__brand { grid-column: 1 / -1; }
+  .footer__bottom { justify-content: flex-start; }
+
+  .tabs { padding: 5px; }
+  .tab { flex: 0 0 auto; }
+}
+
+@media (max-width: 430px) {
+  .hero__cta { flex-direction: column; align-items: stretch; }
+  .hero__cta .btn { width: 100%; }
+  .plan__price { font-size: 36px; }
+  .stat__num { font-size: 26px; }
+  .stats { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+}
+
+/* pointer-coarse devices get no hover-only navigation */
+@media (hover: none) {
+  .nav__item:hover > .nav__menu { opacity: 0; visibility: hidden; }
+}
