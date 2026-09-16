@@ -137,12 +137,31 @@ read off it, so the five stages are one continuous transformation:
 | 0.57 | Context | a Scribe screen surfaces inside the cloud |
 | 0.76 | Useful output | the cloud funnels into a cone behind the screen, which ends fully opaque |
 
-**The motion model.** Every particle orbits one shared vertical axis at its own radius,
-height, tilt, flatness and speed — a tornado seen slightly from above, so no two paths
-are alike. Each orbit's starting angle is *solved* from the particle's stage-one grid
-position (`solveOrbits`), which means at `accum = 0` the vortex **is** the grid layout:
-when the spin starts, nothing moves to somewhere new. `sin(theta)` doubles as depth and
-drives size, opacity, and whether a particle draws in front of or behind the screen.
+**The motion model.** Every particle orbits one shared vertical axis at its own
+radius, height, tilt, flatness and share of the rotation — a tornado seen slightly from
+above, so no two paths trace the same line. It is the only thing that moves them: there
+is no drift, float or bob layered on top.
+
+That rotation never stops, and it answers to the scroll:
+
+```js
+var AMBIENT  = 0.085;   // rad/s with no input at all
+var IMPULSE  = 0.024;   // rad/s injected per pixel scrolled
+var DECAY    = 0.88;    // per 1/60s — gives it the weight of a flywheel
+var MAX_SPIN = 5.0;     // so a flick cannot spin it into a blur
+```
+
+Scroll down and the cloud accelerates; stop and it eases back to its ambient drift;
+scroll back up and it runs backwards. The angle counts *down*, so the near face of the
+cloud — the larger, more opaque half — always sweeps left to right.
+
+Because it is always turning, there is no static grid to lay out against. Heights are
+handed out evenly down the column and each particle's angle is its height rank times the
+golden angle (137.5°), so anything at a similar height is far apart around the axis and
+anything at a similar angle is far apart in height. The projection stays well spread at
+every rotation rather than only at the start. While they are still pills, orbits are
+tilted and dished less — they keep to their lanes so the text stays readable — and open
+out into the full path as each one becomes a dot.
 
 **The pill and the dot are the same object.** A particle's `(x, y)` is always its dot;
 the pill is drawn extending to the right of it and contracts back into it, with the label
@@ -166,11 +185,11 @@ neighbours, so the field reads as one point cloud and reorganises as it turns. T
 single nearest neighbour is always joined however far away it is, so no dot is ever
 orphaned; the second and third are held to a radius.
 
-**The funnel.** From 0.64 the cloud blends out of its free orbit and into an explicit
-cone — a mouth just below the copy, a tip behind the middle of the screen — while the
-spin accelerates and the screen drops slightly to open room above it. Particles reaching
-the tip fade out rather than piling up, and anything that would cover the screen fades
-only where it overlaps it, so the cone's mouth survives while its body disappears behind.
+**The funnel.** From 0.62 the cloud blends out of its free orbit into an explicit cone —
+a mouth just below the copy, a tip behind the middle of the screen — while the screen
+drops slightly to open room above it. From 0.80 that cone sinks: mouth and tip both pull
+inside the screen's rectangle until nothing is left outside it, and the last of it fades
+as the screen becomes solid. The section ends on the screen alone.
 
 The heading never moves; only the caption under it changes. The five dots below the
 caption are a progress cue for a pinned section — delete `.ctx__ticks` from `index.html`
