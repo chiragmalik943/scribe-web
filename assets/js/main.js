@@ -88,10 +88,36 @@
     }).join('');
   }
 
+  /* ── integrations, the compact home-page strip ─────────────────────────
+     Same source, less of it: name and status only, so the home page can show
+     the whole list without becoming the integrations page.                 */
+  function renderIntegrationTiles() {
+    var host = document.querySelector('[data-integration-tiles]');
+    if (!host || typeof INTEGRATIONS === 'undefined') return;
+
+    var limit = parseInt(host.getAttribute('data-limit'), 10);
+    var list = limit > 0 ? INTEGRATIONS.slice(0, limit) : INTEGRATIONS;
+
+    host.innerHTML = list.map(function (item) {
+      return '' +
+        '<a class="int-tile" href="integrations.html">' +
+          '<span class="icon-tile">' + icon(item.icon) + '</span>' +
+          '<span class="int-tile__text">' +
+            '<b>' + escapeHtml(item.name) + '</b>' +
+            '<span>' + escapeHtml(item.status) + '</span>' +
+          '</span>' +
+        '</a>';
+    }).join('');
+
+    var count = host.parentNode.querySelector('[data-integration-count]');
+    if (count) count.textContent = String(INTEGRATIONS.length);
+  }
+
   function init() {
     renderLogos();
     renderTestimonials();
     renderIntegrations();
+    renderIntegrationTiles();
   }
 
   if (document.readyState === 'loading') {

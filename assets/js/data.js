@@ -46,6 +46,28 @@ const TESTIMONIALS = [
     name: 'Nina Hoffman', role: 'Co-founder', company: 'Acme', icon: 'mark-1' }
 ];
 
+/* The platforms Scribe ships on, in the order the picker lists them.
+   `url` is what the download button points at — swap these for real installer
+   URLs when you have them. `req` is the line shown under the button once a
+   platform is chosen, and `format` is the small print inside the picker. */
+const PLATFORMS = [
+  { id: 'mac',     name: 'macOS',   icon: 'i-laptop',
+    req: 'macOS 13 Ventura or later, Apple silicon and Intel',
+    format: 'Universal .dmg', url: 'pricing.html' },
+  { id: 'windows', name: 'Windows', icon: 'i-window',
+    req: 'Windows 11 and Windows 10, 64-bit',
+    format: '.exe installer', url: 'pricing.html' },
+  { id: 'linux',   name: 'Linux',   icon: 'i-terminal',
+    req: 'Ubuntu 22.04+, Fedora 39+, or any distro that runs AppImage',
+    format: '.deb, .rpm or AppImage', url: 'pricing.html' },
+  { id: 'ios',     name: 'iOS',     icon: 'i-phone',
+    req: 'iPhone and iPad on iOS 16 or later',
+    format: 'App Store', url: 'pricing.html' },
+  { id: 'android', name: 'Android', icon: 'i-tablet',
+    req: 'Android 10 or later',
+    format: 'Google Play', url: 'pricing.html' }
+];
+
 /* The integrations grid. `status` renders as the small line under the name. */
 const INTEGRATIONS = [
   { name: 'Zoom',            status: 'Added Mar 2026',  icon: 'i-video',
@@ -53,7 +75,7 @@ const INTEGRATIONS = [
   { name: 'Google Meet',     status: 'Added Mar 2026',  icon: 'i-video',
     blurb: 'Same recording and notes as a native call, including the speaker labels Meet already knows about.' },
   { name: 'Microsoft Teams', status: 'Added Feb 2026',  icon: 'i-video',
-    blurb: 'Works with Teams calls on macOS, with the meeting title and attendee list carried through.' },
+    blurb: 'Works with Teams calls on every desktop build, with the meeting title and attendee list carried through.' },
   { name: 'Google Calendar', status: 'Added Jan 2026',  icon: 'i-calendar',
     blurb: 'Reads your next meeting so a recording starts already titled, dated and matched to a project folder.' },
   { name: 'Slack',           status: 'Added Feb 2026',  icon: 'i-chat',

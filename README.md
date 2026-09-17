@@ -1,7 +1,8 @@
 # Scribe — marketing site
 
-Static marketing site for **Scribe**, the macOS app that records meetings, writes them
-up, and reads every call against what the project has already agreed.
+Static marketing site for **Scribe**, the app that records meetings, writes them up, and
+reads every call against what the project has already agreed. Scribe ships on Windows,
+macOS, Linux, iOS and Android.
 
 No build step, no dependencies, no framework. Open `index.html` in a browser, or serve
 the folder with any static server.
@@ -33,11 +34,13 @@ scribe-web/
     │   ├── sections.css    Page-level compositions (hero, stack, pricing, …)
     │   └── responsive.css  Breakpoint overrides — loaded last so it always wins
     ├── js/
-    │   ├── data.js         ← EDITABLE CONTENT: logos, testimonials, integrations
-    │   ├── main.js         Renders the three lists above into the page
+    │   ├── data.js         ← EDITABLE CONTENT: logos, testimonials, integrations, platforms
+    │   ├── main.js         Renders the list-shaped content above into the page
     │   ├── reveal.js       Scroll reveals, word-by-word headings, count-up numbers
     │   ├── stack.js        Depth cue for the stacking cards in "Why Scribe"
+    │   ├── hero-scene.js   The interactive "project context" canvas in the hero
     │   ├── context-scene.js  The pinned "Project context" canvas scene
+    │   ├── download.js     Platform detection and the split download button
     │   └── ui.js           Nav, mobile menu, tabs, accordion, price switch, filter, form
     ├── fonts/              Self-hosted Onest + Source Serif 4 (woff2, latin subset)
     └── img/
@@ -53,9 +56,9 @@ almost always belongs in exactly one of them.
 
 ## Editing content
 
-**Logos, testimonials and integrations** live in `assets/js/data.js` as three arrays.
-Change the values and the logo strip, the testimonial columns and the integrations grid
-all update — no HTML to touch.
+**Logos, testimonials, integrations and platforms** live in `assets/js/data.js` as four
+arrays. Change the values and the logo strip, the testimonial columns, both integrations
+views and the download picker all update — no HTML to touch.
 
 > The names, quotes, roles and statistics shipped here are **placeholders**. Replace
 > them with real ones, or delete them; invented testimonials attributed to people who do
@@ -63,6 +66,10 @@ all update — no HTML to touch.
 
 **Everything else** — headlines, body copy, pricing, FAQ answers, legal text — is
 written directly in the HTML, so it is indexable and readable without JavaScript.
+
+**Download links**: `PLATFORMS` in `data.js` carries a `url` per platform, which is what
+the download buttons point at. They ship pointed at `pricing.html`; swap them for real
+installer URLs when you have them.
 
 **Prices**: each amount carries `data-monthly` and `data-yearly` attributes. The
 monthly/yearly switch swaps between them; edit the attributes, not the text node.
@@ -204,6 +211,62 @@ with those curves. The composition is deliberately held to the middle of the scr
 Under `prefers-reduced-motion: reduce` the section un-pins, the rail collapses, the canvas
 draws one composed frame of where the scene ends up, and the five captions render as the
 sequence they describe.
+
+### The hero illustration
+
+The home-page hero is one column — copy, buttons, then a canvas running the full content
+width, drawn by `hero-scene.js`. It makes the same claim the page does: a project card in
+the middle, fragments of what was said on earlier calls around it, and a thread from each
+one to the card. Point at a fragment and the card stops summarising and answers for that
+line instead.
+
+| Input | What happens |
+| --- | --- |
+| hover, tap, or ←/→ with the canvas focused | selects a fragment; the card shows the reading |
+| click / tap | pins the selection until you pick another (Escape clears it) |
+| drag | spins the scene, with a flywheel's decay |
+| nothing | it drifts on its own at `AMBIENT` |
+
+There are **two compositions**, and which one applies is read off the frame's own aspect
+ratio (`H / W > 0.75`) rather than a width, so the CSS breakpoint and the script can never
+disagree — change `.hero-scene__frame`'s `aspect-ratio` and the script follows.
+
+- **Wide** — a ring around the card. Depth comes from `sin(angle)`, which drives size,
+  opacity and whether a pill draws in front of or behind the card. A pill whose box would
+  cross the card is pushed clear of it (below in front, above behind); the push is
+  weighted by how much it would cover and fades to nothing at the far left and right of
+  the ring, which is the only place a pill's front/back sense flips, so nothing jumps.
+- **Narrow** — a lane above the card. Fragments drift down it and are absorbed: each one
+  fades out against the card's top edge, and the card answers for whichever is closest to
+  being taken in. A ring of text pills cannot be read on a phone; this says the same thing
+  in the one dimension a phone has.
+
+Below ~900px the pills switch to the `short` label in `FRAGMENTS`; the card always quotes
+the line in full. Editing the scene means editing that array — `said` is the line as it
+was spoken, `read` is what Scribe makes of it, `kind` picks the dot colour from the same
+vocabulary `context-scene.js` uses.
+
+Under `prefers-reduced-motion: reduce` nothing moves: the scene composes one still frame
+and selection still works. Without JavaScript the `<noscript>` block shows a screenshot.
+
+### The download control
+
+Scribe ships on five platforms, so the button works out which one you are on rather than
+asking. `download.js` guesses from `navigator.userAgentData`, then the classic platform
+and user-agent strings — an iPad reports itself as a Mac, so a "Mac" with a touch screen
+is treated as iOS — and labels itself accordingly. Every other platform stays one click
+away in the menu, and a choice is remembered in `localStorage` so the rest of the site
+agrees with it.
+
+Two shapes, both fed from `PLATFORMS`:
+
+| Markup | Renders as |
+| --- | --- |
+| `[data-download]` | the split button: main half + chevron + menu |
+| `[data-dl-simple]` | a plain button that only re-labels itself |
+
+Anything marked `[data-dl-note]` is rewritten with the chosen platform's requirements
+line; `data-dl-before` and `data-dl-after` set what sits either side of it.
 
 ### The stacking cards
 

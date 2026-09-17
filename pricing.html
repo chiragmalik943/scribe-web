@@ -60,6 +60,11 @@
 <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a3.8 3.8 0 0 0 5.7.4l3-3a4 4 0 0 0-5.7-5.7l-1.6 1.6"/><path d="M14 10a3.8 3.8 0 0 0-5.7-.4l-3 3a4 4 0 0 0 5.7 5.7l1.6-1.6"/></symbol>
 <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.2A2 2 0 0 1 6 3.2h12a2 2 0 0 1 2 2v13.6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M8 7.8h8M8 12h8M8 16.2h4.6"/></symbol>
 <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v11"/><path d="m7.6 10.4 4.4 4.4 4.4-4.4"/><path d="M4 20h16"/></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="11.5" rx="2.2"/><path d="M2.2 19h19.6"/></symbol>
+<symbol id="i-window" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="2.8"/><path d="M12 3.5v17M3.5 12h17"/></symbol>
+<symbol id="i-terminal" viewBox="0 0 24 24"><rect x="2.8" y="4" width="18.4" height="16" rx="2.8"/><path d="m7 10.2 2.7 2.3L7 14.8"/><path d="M12.6 15.2h4.4"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/><path d="M10.5 5.4h3"/></symbol>
+<symbol id="i-tablet" viewBox="0 0 24 24"><rect x="5.2" y="2.5" width="13.6" height="19" rx="2.8"/><circle cx="12" cy="18.2" r="1.2"/></symbol>
 <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2.8" y="4" width="18.4" height="13" rx="2.6"/><path d="M8.5 21h7M12 17v4"/></symbol>
 <symbol id="i-video" viewBox="0 0 24 24"><rect x="2.8" y="6" width="12.5" height="12" rx="2.8"/><path d="m15.3 11.2 5.9-3.4v8.4l-5.9-3.4Z"/></symbol>
 <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 12.4a7.9 7.9 0 0 1-8.5 7.9 9 9 0 0 1-2.6-.4L4 21.5l1.6-4.6a7.6 7.6 0 0 1-1.1-4 7.9 7.9 0 0 1 8.4-7.4 8 8 0 0 1 7.6 6.9Z"/></symbol>
@@ -99,7 +104,7 @@
         <div class="nav__menu">
           <a href="features.html">Features<span>Project memory, notes, dictation</span></a>
           <a href="index.html#use-cases">Use cases<span>How teams run it day to day</span></a>
-          <a href="index.html#security">Security<span>What stays on your Mac</span></a>
+          <a href="index.html#security">Security<span>What stays on your device</span></a>
         </div>
       </div>
       <a class="nav__link" href="integrations.html">Integrations</a>
@@ -142,7 +147,7 @@
   <div class="wrap">
     <span class="eyebrow is-centred" data-reveal>Pricing</span>
     <h1 class="h1" data-split data-split-step="44">Simple pricing.<br><span class="soft">No surprises.</span></h1>
-    <p class="lead" data-reveal data-reveal-delay="150">Start free and stay free if that is all you need. Upgrade when the memory across projects starts doing the work for you.</p>
+    <p class="lead" data-reveal data-reveal-delay="150">Start free and stay free if that is all you need. Upgrade when the memory across projects starts doing the work for you. Every plan runs on Windows, macOS, Linux, iOS and Android.</p>
       <div class="pricing__switch" data-reveal data-reveal-delay="240">
         <div class="switch" role="switch" tabindex="0" aria-checked="false" aria-label="Bill yearly" data-price-switch>
           <span class="switch__label is-on">Monthly</span>
@@ -171,7 +176,7 @@
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>Up to 3 project folders</span></li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><span>Local storage only</span></li>
         </ul>
-        <a class="btn btn--light btn--block" href="pricing.html">Download for Mac</a>
+        <a class="btn btn--light btn--block" href="pricing.html" data-dl-simple><span data-dl-label>Download Scribe</span></a>
       </article>
       <article class="plan plan--featured">
         <img class="plan__art" src="assets/img/bg/amber.webp" alt="" aria-hidden="true" loading="lazy">
@@ -259,7 +264,7 @@
         </div>
 <div class="acc__item">
           <button class="acc__btn" type="button" aria-expanded="false">
-            <span>Does my audio leave my Mac?</span><span class="acc__sign" aria-hidden="true"></span>
+            <span>Does my audio leave my device?</span><span class="acc__sign" aria-hidden="true"></span>
           </button>
           <div class="acc__panel"><div><p>Not by default. Recordings, transcripts and tasks are stored locally, and dictation is transcribed on-device. Cloud transcription and assistant replies are two separate switches, both off until you turn them on, and the privacy page in the app always shows which are live.</p></div></div>
         </div>
@@ -267,7 +272,7 @@
           <button class="acc__btn" type="button" aria-expanded="false">
             <span>How does the dictation hotkey work?</span><span class="acc__sign" aria-hidden="true"></span>
           </button>
-          <div class="acc__panel"><div><p>Hold your chosen key anywhere on the Mac, speak, and release. The text lands at your cursor in whatever app is in front — an email, a terminal, a comment box — or on the clipboard if there is nowhere to type. Terms you correct are learned, so the same name stops coming out wrong.</p></div></div>
+          <div class="acc__panel"><div><p>On Windows, macOS and Linux, hold your chosen key anywhere on the machine, speak, and release. The text lands at your cursor in whatever app is in front — an email, a terminal, a comment box — or on the clipboard if there is nowhere to type. Terms you correct are learned, so the same name stops coming out wrong.</p></div></div>
         </div></div>
       <div class="acc"><div class="acc__item">
           <button class="acc__btn" type="button" aria-expanded="false">
@@ -279,13 +284,13 @@
           <button class="acc__btn" type="button" aria-expanded="false">
             <span>Which calls can it record?</span><span class="acc__sign" aria-hidden="true"></span>
           </button>
-          <div class="acc__panel"><div><p>Any audio playing on your Mac, plus your microphone — so Zoom, Meet, Teams, a phone on speaker, or a conversation in the room. Calendar and meeting integrations add the title, attendees and project folder automatically.</p></div></div>
+          <div class="acc__panel"><div><p>On the desktop, any audio playing on the machine plus your microphone — so Zoom, Meet, Teams, a phone on speaker, or a conversation in the room. On iOS and Android it is the microphone, which covers the room and a call on speaker. Calendar and meeting integrations add the title, attendees and project folder automatically.</p></div></div>
         </div>
 <div class="acc__item">
           <button class="acc__btn" type="button" aria-expanded="false">
             <span>Can I cancel anytime?</span><span class="acc__sign" aria-hidden="true"></span>
           </button>
-          <div class="acc__panel"><div><p>Yes. Plans are monthly or yearly with no contract, and cancelling leaves every recording, transcript and note already on your Mac exactly where it is.</p></div></div>
+          <div class="acc__panel"><div><p>Yes. Plans are monthly or yearly with no contract, and cancelling leaves every recording, transcript and note already on your devices exactly where it is.</p></div></div>
         </div></div>
     </div>
   </div>
@@ -295,8 +300,18 @@
     <div class="cta-card" data-reveal="soft">
       <div class="cta-card__body">
         <h2 class="h3" data-split>Start on the free plan.<br><span class="soft">Decide later.</span></h2>
-        <p>No card to begin, and no lock-in afterwards — your recordings and notes are files on your Mac either way.</p>
-        <a class="btn btn--primary btn--lg" href="contact.html">Download for Mac</a>
+        <p>No card to begin, and no lock-in afterwards — your recordings and notes are files on your own device either way.</p>
+        <div class="dl" data-download>
+          <a class="btn btn--primary btn--lg dl__main" href="pricing.html" data-dl-main>
+            <svg class="icon" aria-hidden="true" data-dl-icon><use href="#i-download"></use></svg>
+            <span data-dl-label>Download Scribe</span>
+          </a>
+          <button class="btn btn--primary btn--lg dl__toggle" type="button"
+                  aria-haspopup="true" aria-expanded="false" aria-label="Choose a platform" data-dl-toggle>
+            <svg class="chev" aria-hidden="true"><use href="#i-chevron-down"></use></svg>
+          </button>
+          <div class="dl__menu" role="menu" hidden data-dl-menu></div>
+        </div>
       </div>
       <div class="cta-card__media">
         <img class="shot__bg" src="assets/img/bg/amber.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -368,6 +383,7 @@
 <script src="assets/js/reveal.js"></script>
 <script src="assets/js/stack.js"></script>
 <script src="assets/js/context-scene.js"></script>
+<script src="assets/js/download.js"></script>
 <script src="assets/js/ui.js"></script>
 </body>
 </html>

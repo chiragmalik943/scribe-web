@@ -67,7 +67,7 @@
 .hero-scene__hint {
   position: absolute;
   left: 50%;
-  bottom: 11px;
+  bottom: 14px;
   transform: translateX(-50%);
   display: flex;
   gap: 16px;
