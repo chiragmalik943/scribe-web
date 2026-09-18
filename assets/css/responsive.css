@@ -1,6 +1,7 @@
 /* ============================================================================
    responsive.css — breakpoint overrides. Loaded last so it always wins.
-   Breakpoints: 1180 (tablet landscape), 900 (tablet), 680 (phone), 430 (small)
+   Breakpoints: 1180 (media goes one column), 1000 (nav collapses),
+                900 (tablet), 680 (phone), 430 (small)
    ========================================================================== */
 
 @media (max-width: 1180px) {
@@ -9,13 +10,72 @@
   .int-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   /* the ring needs its height back as the frame narrows */
   .hero-scene__frame { aspect-ratio: 16 / 8; }
-  .stack-card { grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr); }
-  .usecase__panel { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); }
-  .result-card { grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr); }
-
   .footer__top { grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); row-gap: 34px; }
 }
 
+@media (max-width: 1180px) {
+  /* ── one column from here down ────────────────────────────────────────────
+     Two columns squeeze the media box hard below 1200px: the app window ends
+     up shown at half size and its type drops to about 8px, which is the band
+     the old screenshots were unreadable in. Flattening here gives the window
+     its room back.
+
+     Each media box then gets a max-width, because the opposite problem waits
+     on the other side: left to fill a one-column section, a 1000px-wide app
+     window is drawn at nearly 1:1 and looks zoomed in next to the others.
+     The caps hold every shot at the ~11px apparent type size it has on a wide
+     screen — the numbers are worked out in assets/mockups/render.py.      */
+  .trio { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .trio__item { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .trio__item .shot { aspect-ratio: 16 / 8.6; }
+  .trio__item .chip-shot { width: min(100%, 320px); }
+
+  /* the stack flattens into ordinary cards — sticky stacking needs the height */
+  .stack-panel { position: static; height: auto; display: block; }
+  .stack-panel + .stack-panel { margin-top: 18px; }
+  .stack-card {
+    grid-template-columns: minmax(0, 1fr);
+    transform: none !important;
+    box-shadow: none;
+  }
+  .stack-card__media { min-height: 0; aspect-ratio: 16 / 9.4; }
+  .stack-card__media picture,
+  .stack-card__media .chip-shot { width: min(100%, 460px); }
+  .stack-card__body { padding: 24px 20px 28px; }
+  .stack-card__body .h4 { max-width: none; }
+
+  .usecase__panel { grid-template-columns: minmax(0, 1fr); }
+  .usecase__copy { padding: 20px 14px 4px; }
+  .usecase__copy .h4 { max-width: none; }
+  .usecase__media {
+    margin-right: 0;
+    border-radius: var(--r-sm);
+    min-height: 0;
+    aspect-ratio: 16 / 11;
+  }
+
+  .result-card { grid-template-columns: minmax(0, 1fr); }
+  .result-card__media { min-height: 0; aspect-ratio: 16 / 10; }
+  .result-card__body { padding: 22px 18px 26px; }
+  .result-quote { max-width: none; }
+
+  .cta-card { grid-template-columns: minmax(0, 1fr); }
+  .cta-card__body { padding: 26px 20px 6px; }
+  .cta-card__body .h3, .cta-card__body p { max-width: none; }
+  .cta-card__media { min-height: 0; aspect-ratio: 16 / 9; }
+
+  .split, .split + .split { grid-template-columns: minmax(0, 1fr); }
+  .split--flip .split__media { order: 0; }
+  .split__copy .h4, .split__copy > p { max-width: none; }
+
+  /* width, not max-width: these three are grid items, and `margin: auto` on a
+     grid item turns off stretch sizing — with only absolutely-positioned
+     children inside, that collapses the box to nothing. */
+  .usecase__media    { width: min(100%, 700px); margin-inline: auto; }
+  .cta-card__media   { width: min(100%, 600px); margin-inline: auto; }
+  .result-card__media{ width: min(100%, 520px); margin-inline: auto; }
+  .split__media .shot { max-width: 620px; margin-inline: auto; }
+}
 @media (max-width: 1000px) {
   .nav__links { display: none; }
   .nav__signin { display: none; }
@@ -47,52 +107,8 @@
   .hero__copy .lead { max-width: 52ch; }
   .hero-scene__frame { aspect-ratio: 16 / 9.4; }
 
-  /* one column: a tall square of backdrop around a small card reads as empty,
-     so the frames get wider and the floating cards get bigger */
-  .trio { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-  .trio__item { display: grid; grid-template-columns: minmax(0, 1fr); }
-  .trio__item .shot { aspect-ratio: 16 / 8.6; }
-  .trio__item .chip-shot { width: min(100%, 430px); }
-
-  /* the stack flattens into ordinary cards — sticky stacking needs the height */
-  .stack-panel { position: static; height: auto; display: block; }
-  .stack-panel + .stack-panel { margin-top: 18px; }
-  .stack-card {
-    grid-template-columns: minmax(0, 1fr);
-    transform: none !important;
-    box-shadow: none;
-  }
-  .stack-card__media { min-height: 0; aspect-ratio: 16 / 9.4; }
-  .stack-card__media .chip-shot { width: min(100%, 460px); }
-  .stack-card__body { padding: 24px 20px 28px; }
-  .stack-card__body .h4 { max-width: none; }
-
-  .usecase__panel { grid-template-columns: minmax(0, 1fr); }
-  .usecase__copy { padding: 20px 14px 4px; }
-  .usecase__copy .h4 { max-width: none; }
-  .usecase__media {
-    margin-right: 0;
-    border-radius: var(--r-sm);
-    min-height: 0;
-    aspect-ratio: 16 / 11;
-  }
-
   .plans { grid-template-columns: minmax(0, 1fr); }
   .plan--featured { order: -1; }
-
-  .result-card { grid-template-columns: minmax(0, 1fr); }
-  .result-card__media { min-height: 0; aspect-ratio: 16 / 10; }
-  .result-card__body { padding: 22px 18px 26px; }
-  .result-quote { max-width: none; }
-
-  .cta-card { grid-template-columns: minmax(0, 1fr); }
-  .cta-card__body { padding: 26px 20px 6px; }
-  .cta-card__body .h3, .cta-card__body p { max-width: none; }
-  .cta-card__media { min-height: 0; aspect-ratio: 16 / 9; }
-
-  .split, .split + .split { grid-template-columns: minmax(0, 1fr); }
-  .split--flip .split__media { order: 0; }
-  .split__copy .h4, .split__copy > p { max-width: none; }
 
   .contact { grid-template-columns: minmax(0, 1fr); }
 
@@ -107,11 +123,33 @@
   .ctx__copy .h2 { max-width: 100%; }
   .ctx__slot { height: 4.2em; margin-top: 14px; }
 
-  /* at phone width an app screenshot is unreadable however it is cropped, so
-     show the whole window rather than a zoomed corner of it */
+  /* At phone width the whole window at once is unreadable whatever you do
+     with it, so the frame holds a fixed window instead of a fixed fraction:
+     600px wide, pulled 114px left. That lands the app's content column in the
+     frame and leaves the navigation rail outside it — on a phone the content
+     is worth more than the chrome — and it holds the type at the same size
+     whatever the frame is doing, from 680px down to the smallest screen. */
   .usecase__media .shot__fg,
   .cta-card__media .shot__fg,
-  .split__media .shot__fg { width: 112%; top: 6%; left: 6%; }
+  .split__media .shot__fg { width: 600px; max-width: none; top: 8%; left: -114px; }
+  /* The detail crops give up their frame padding here for the same reason,
+     and their frames give up the fixed aspect ratio: at this width the crop
+     is taller than a 16:9 box, and a box that will not grow clips it top and
+     bottom — which is the exact fault the shots were rebuilt to remove. */
+  .stack-card__media,
+  .trio__item .shot { aspect-ratio: auto; min-height: 0; padding: 12px; }
+  /* the results card gives the comparison the whole column rather than a
+     positioned slice of it — there is no room here for both */
+  .result-card__media .chip-shot { position: relative; top: 0; left: 0; width: min(100%, 400px); }
+  .result-card__media { display: grid; place-items: center; padding: 12px; aspect-ratio: auto; }
+  /* a crop that is a single column can be cropped by the frame too. The
+     side-by-side comparison cannot — losing its right-hand column loses the
+     whole point of it — so that one stays whole and stays small. */
+  .stack-card__media .chip-shot--croppable {
+    width: min(150%, 420px);
+    max-width: none;
+    justify-self: start;   /* crop from the right only, like the windows */
+  }
   /* below 620px the scene switches to its lane composition, which wants a
      tall frame: a run for the fragments and the card at the foot of it */
   .hero-scene__frame { aspect-ratio: 1 / 1.2; border-radius: var(--r-lg); }

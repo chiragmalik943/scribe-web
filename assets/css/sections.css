@@ -106,7 +106,7 @@
   margin-bottom: 22px;
   border-radius: var(--r);
 }
-.trio__item .chip-shot { width: min(100%, 300px); }
+.trio__item .chip-shot { width: 100%; }
 .trio__item p { margin-top: 10px; font-size: 15px; line-height: 1.5; color: var(--ink-2); max-width: 38ch; }
 
 /* ── sticky stacking cards ("Why Scribe") ────────────────────────────────────
@@ -146,7 +146,8 @@
   place-items: center;
   padding: clamp(20px, 2.2vw, 30px);
 }
-.stack-card__media .chip-shot { width: min(100%, 362px); }
+.stack-card__media picture { display: block; width: min(100%, 460px); }
+.stack-card__media .chip-shot { width: min(100%, 460px); }
 .stack-card__body {
   padding: clamp(26px, 3.4vw, 48px);
   display: flex;
@@ -309,9 +310,13 @@
 .result-card__media .shot__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .result-card__media .chip-shot {
   position: absolute;
-  top: 12%;
-  left: 10%;
-  width: 112%;
+  top: 24%;
+  left: 9%;
+  /* fully inside the frame: this is the one chip the card positions rather
+     than centres, and the crop used to take the right-hand column of the
+     comparison with it. The px cap keeps it off 1:1 once the card is one
+     column and the box gets wide. */
+  width: min(82%, 380px);
   max-width: none;
   border-radius: 10px;
 }
@@ -480,7 +485,9 @@
   position: absolute;
   top: 8%;
   left: 8%;
-  width: 122%;
+  /* the narrowest of the three full-window slots, so it leans on the frame a
+     little harder to hold the window's type at the same size as the others */
+  width: 128%;
   height: auto;
   max-width: none;
   border-radius: 10px;

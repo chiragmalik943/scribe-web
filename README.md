@@ -43,10 +43,17 @@ scribe-web/
     │   ├── download.js     Platform detection and the split download button
     │   └── ui.js           Nav, mobile menu, tabs, accordion, price switch, filter, form
     ├── fonts/              Self-hosted Onest + Source Serif 4 (woff2, latin subset)
+    ├── mockups/            ← SOURCE OF THE PRODUCT SCREENSHOTS (see below)
+    │   ├── app.css         The product UI: one type scale, one spacing scale
+    │   ├── shots.html      One .stage per screenshot, all on one data set
+    │   └── render.py       Renders every stage into assets/img/app/*.webp
     └── img/
-        ├── app/            Product screenshots, captured from the Scribe prototype
+        ├── app/            Product screenshots — generated, do not edit by hand
         ├── bg/             Painted backdrops that sit behind the screenshots
-        └── favicon.svg
+        ├── favicon.svg     The mark on its dark tile
+        ├── logo-mark.svg   The same, as a standalone asset
+        ├── logo-mark-inverse.svg   White mark on terracotta, for dark grounds
+        └── apple-touch-icon.png
 ```
 
 The CSS files are loaded in that order on every page and each has one job, so a change
@@ -90,7 +97,9 @@ finds them.
 | `--ink` | `#1C1A15` | headlines, primary text |
 | `--ink-2` | `#56524A` | body copy, the muted half of a heading |
 | `--ink-3` | `#8C887E` | labels, meta |
-| `--accent` | `#0548CF` | the app's Ocean blue, used sparingly |
+| `--brand` | `#D17D61` | the mark's own terracotta — decorative only, 2.9:1 |
+| `--accent` | `#B4522F` | fills and links — 4.8:1 on the page |
+| `--accent-ink` | `#8F4423` | hovers, and accent text under 15px — 6.7:1 |
 | `--maxw` | `1200px` | content width |
 
 Headings use a serif at weight 300 with tight negative tracking; everything else is
@@ -306,3 +315,60 @@ endpoint and remove the `preventDefault()` branch in `initForm()` in `assets/js/
 Current Chrome, Safari, Firefox and Edge. Uses CSS nesting-free plain CSS, custom
 properties, `aspect-ratio`, `color-mix()`, `:focus-visible` and `IntersectionObserver` —
 all widely available. Images are WebP.
+
+
+---
+
+## Product screenshots
+
+Every screenshot in `assets/img/app/` is generated from `assets/mockups/`. None of
+them is a capture: there is no prototype to re-capture from, and hand-captured shots
+drifted apart — different zoom levels, text too small to read, a floating button
+landing on top of a task's due date, folder counts that did not add up.
+
+```bash
+python3 assets/mockups/render.py             # rebuild all of them
+python3 assets/mockups/render.py project     # rebuild one
+python3 assets/mockups/render.py --preview   # also write assets/mockups/_preview/,
+                                             # showing what each page's frame
+                                             # actually leaves visible
+```
+
+It needs Python with Playwright and a Chromium build (`CHROMIUM=/path/to/chrome`
+if it is not at Playwright's default).
+
+### The one rule
+
+**Every shot is rendered at a width chosen so its 15px row title lands between 10px
+and 12px on screen, in the slot it appears in.** A screenshot shown at 790px on the
+home page and 695px on the features page is not the same picture twice unless one of
+them was drawn bigger to start with. `SHOTS` in `render.py` holds the table, with the
+measured display width of each slot beside it.
+
+If you add a shot, or move one into a different section, recompute its stage width:
+
+```
+stage width = display width in that slot x 15 / 11
+```
+
+and check it against a slot that is already right.
+
+### What the frame does to a shot
+
+The page deliberately shows the app window larger than its frame, so it bleeds off
+the edge. The tightest slot — the closing CTA card — leaves only the left 70% and the
+top 57% of the image visible. So:
+
+* content lives in `.flow`, a 500px column, and nothing that carries meaning sits
+  past it;
+* dates and owners go in the meta line, never right-aligned, because the right edge
+  is the first thing to go;
+* each view reads top-down, so what the bottom crop takes is always continuation;
+* `--preview` is the check — it renders the visible region of each slot exactly.
+
+### One data set
+
+The same eleven meetings, one Acme project and nine tasks run through every view, and
+the numbers reconcile — including with the hero illustration in `assets/js/hero-scene.js`,
+which shows the same project. The set is written at the top of `shots.html`. Change a
+count there and change it everywhere, or the site starts contradicting itself again.

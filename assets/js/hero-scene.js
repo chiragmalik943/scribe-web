@@ -49,7 +49,7 @@
   var INK2   = token('--ink-2', '#56524A');
   var INK3   = token('--ink-3', '#8C887E');
   var LINE   = 'rgba(28, 26, 21, .12)';
-  var ACCENT = token('--accent', '#0548CF');
+  var ACCENT = token('--accent', '#B4522F');
 
   /* One colour per kind of insight — the same vocabulary the app uses. */
   var KIND = {

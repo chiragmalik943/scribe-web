@@ -46,10 +46,19 @@
   --line:        rgba(28, 26, 21, .10);
   --line-2:      rgba(28, 26, 21, .16);
 
-  /* accent — the app's Ocean blue, used sparingly */
-  --accent:      #0548CF;
-  --accent-ink:  #0A3FA8;
-  --accent-soft: #E4EFFE;
+  /* accent — the terracotta from the mark. Three steps, because one hue
+     cannot do fills and small text at once and still be legible on cream:
+       --brand      the mark's own colour. Decorative use only; at 2.9:1 on
+                    the page it is not a text or UI colour.
+       --accent     fills and 15px+ links — 4.8:1 on the page, 5.0:1 white on it
+       --accent-ink hovers, and any accent text below 15px — 6.7:1
+     Ocean blue is gone from the site; the product UI in the screenshots was
+     rebuilt on the same three steps (assets/mockups/app.css). */
+  --brand:       #D17D61;
+  --accent:      #B4522F;
+  --accent-ink:  #8F4423;
+  --accent-soft: #FBEDE6;
+  --accent-line: #EECFBD;
 
   /* radii */
   --r-xs: 6px;

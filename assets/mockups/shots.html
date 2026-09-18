@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scribe — screenshot source</title>
+<!-- ==========================================================================
+     shots.html — the source of every product screenshot on the marketing site
+     --------------------------------------------------------------------------
+     Each .stage below is rendered by render.py into assets/img/app/<id>.webp.
+     A stage's width is not a free choice: it is picked so that, once the page
+     scales the image into its slot, the 15px row-title size lands between
+     10px and 12px on screen — the same apparent size in every shot. The table
+     lives in render.py; change a width there, not here.
+
+     Content rules that keep the shots honest (see .flow in app.css):
+       · one column, ordered top-down — the frame crops the bottom and right
+       · nothing that carries meaning sits past .flow
+       · no floating action button, no docked composer over a list: those are
+         what used to land on top of the text in the old shots
+
+     One data set runs through every view and the numbers add up — including the
+     hero illustration in assets/js/hero-scene.js, which shows the same project:
+       18 meetings  Client Calls 11 (Acme 9, Northwind 1, Meridian 1) ·
+                    Interviews 2 (Backend 1, Frontend 1) · Projects 2 ·
+                    Internal 2 · Unfiled 1
+       Acme         9 calls · 12 decisions · 3 watchouts (1 conflict,
+                    1 discrepancy, 1 clarification) · 3 open tasks
+       Tasks        9 open, 2 overdue — 3 of them from the Acme kickoff
+     ======================================================================== -->
+<link rel="stylesheet" href="app.css">
+<style>
+  body { padding: 40px; display: flex; flex-direction: column; gap: 46px; align-items: flex-start; }
+  .stage { box-shadow: 0 10px 30px -12px rgba(0,0,0,.25); }
+  .stage::after {
+    content: attr(data-id); position: absolute; left: 0; bottom: -24px;
+    font-size: 12px; color: #6b6660; letter-spacing: .05em;
+  }
+</style>
+</head>
+<body>
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
+<symbol id="a-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19Z"/></symbol>
+<symbol id="a-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 7v5.2l3.4 2.2"/></symbol>
+<symbol id="a-folder" viewBox="0 0 24 24"><path d="M3.2 7a2.4 2.4 0 0 1 2.4-2.4h3l1.9 2.4h7.9A2.4 2.4 0 0 1 20.8 9.4v7.2a2.4 2.4 0 0 1-2.4 2.4H5.6a2.4 2.4 0 0 1-2.4-2.4Z"/></symbol>
+<symbol id="a-folder-plus" viewBox="0 0 24 24"><path d="M3.2 7a2.4 2.4 0 0 1 2.4-2.4h3l1.9 2.4h7.9A2.4 2.4 0 0 1 20.8 9.4v7.2a2.4 2.4 0 0 1-2.4 2.4H5.6a2.4 2.4 0 0 1-2.4-2.4Z"/><path d="M12 10.6v5M9.5 13.1h5"/></symbol>
+<symbol id="a-chev-down" viewBox="0 0 24 24"><path d="m6.5 9.5 5.5 5.5 5.5-5.5"/></symbol>
+<symbol id="a-chev-right" viewBox="0 0 24 24"><path d="m9.5 6.5 5.5 5.5-5.5 5.5"/></symbol>
+<symbol id="a-mic" viewBox="0 0 24 24"><rect x="9" y="2.6" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3.4"/></symbol>
+<symbol id="a-wave" viewBox="0 0 24 24"><path d="M3 12h2M8 6.5v11M12 3.5v17M16 7.5v9M20.5 12h.5"/></symbol>
+<symbol id="a-check-square" viewBox="0 0 24 24"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="4"/><path d="m8 12 2.6 2.6L16 9.2"/></symbol>
+<symbol id="a-sparkle" viewBox="0 0 24 24"><path d="m9.6 3.2 2 5.2 5.2 2-5.2 2-2 5.2-2-5.2-5.2-2 5.2-2Z"/><path d="m17.8 14.4.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9Z"/></symbol>
+<symbol id="a-search" viewBox="0 0 24 24"><circle cx="10.6" cy="10.6" r="6.4"/><path d="m15.4 15.4 4.4 4.4"/></symbol>
+<symbol id="a-doc" viewBox="0 0 24 24"><path d="M6 4.4h7.2L18 9.2V19a1.6 1.6 0 0 1-1.6 1.6H6A1.6 1.6 0 0 1 4.4 19V6A1.6 1.6 0 0 1 6 4.4Z"/><path d="M13 4.6V9.4h4.8"/></symbol>
+<symbol id="a-users" viewBox="0 0 24 24"><circle cx="9.4" cy="8" r="3.5"/><path d="M3.2 19.6a6.3 6.3 0 0 1 12.4 0"/><path d="M16.4 5a3.5 3.5 0 0 1 0 6.8"/><path d="M18.2 19.4a5 5 0 0 0-2-3.9"/></symbol>
+<symbol id="a-target" viewBox="0 0 24 24"><path d="M12 3.4 18.8 7.2"/><path d="M12 3.4a8.6 8.6 0 1 1-8.2 6"/><path d="M12 7.7a4.3 4.3 0 1 1-4 2.8"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></symbol>
+<symbol id="a-conflict" viewBox="0 0 24 24"><path d="M3 6.4v11.2L10.2 12Z" fill="currentColor" stroke="none"/><path d="M21 6.4v11.2L13.8 12Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="a-neq" viewBox="0 0 24 24"><path d="M4.5 9.5h15M4.5 14.5h15"/><path d="M16.5 4 8 20"/></symbol>
+<symbol id="a-question" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9.7 9.4a2.4 2.4 0 1 1 3.3 2.3c-.6.3-1 .8-1 1.5v.5"/><circle cx="12" cy="16.6" r=".85" fill="currentColor" stroke="none"/></symbol>
+<symbol id="a-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 11v5.4"/><circle cx="12" cy="7.9" r=".9" fill="currentColor" stroke="none"/></symbol>
+<symbol id="a-history" viewBox="0 0 24 24"><path d="M3.8 12a8.2 8.2 0 1 0 2.5-5.9"/><path d="M3.6 4.2v4.2h4.2"/><path d="M12 8.2V12l2.8 1.8"/></symbol>
+<symbol id="a-play" viewBox="0 0 24 24"><path d="M8.5 5.4 18 12l-9.5 6.6Z"/></symbol>
+<symbol id="a-share" viewBox="0 0 24 24"><circle cx="18" cy="6" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="18" r="2.6"/><path d="m8.4 10.7 7.2-3.4M8.4 13.3l7.2 3.4"/></symbol>
+<symbol id="a-more" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="18" cy="12" r="1.3" fill="currentColor" stroke="none"/></symbol>
+<symbol id="a-bell" viewBox="0 0 24 24"><path d="M6.4 10.4a5.6 5.6 0 0 1 11.2 0c0 3 .8 4.6 1.5 5.4H4.9c.7-.8 1.5-2.4 1.5-5.4Z"/><path d="M10 18.8a2.2 2.2 0 0 0 4 0"/></symbol>
+<symbol id="a-sliders" viewBox="0 0 24 24"><path d="M5 5v5.5M5 13.5V19M12 5v3M12 11V19M19 5v8.5M19 16.5V19"/><path d="M3 12h4M10 9.5h4M17 15h4"/></symbol>
+<symbol id="a-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9.8 9.6a2.3 2.3 0 1 1 3.2 2.2c-.6.3-1 .8-1 1.4v.4"/><circle cx="12" cy="16.4" r=".85" fill="currentColor" stroke="none"/></symbol>
+<symbol id="a-list" viewBox="0 0 24 24"><path d="M4 6.5h1M4 12h1M4 17.5h1M8.5 6.5h11M8.5 12h11M8.5 17.5h11"/></symbol>
+<symbol id="a-calendar" viewBox="0 0 24 24"><rect x="3.6" y="5" width="16.8" height="15.4" rx="3"/><path d="M3.6 9.6h16.8M8.4 2.8v4M15.6 2.8v4"/></symbol>
+<symbol id="a-plus" viewBox="0 0 24 24"><path d="M12 5.2v13.6M5.2 12h13.6"/></symbol>
+<symbol id="a-flag" viewBox="0 0 24 24"><path d="M6 20.5V4"/><path d="M6 4.6h11.5l-2.2 4 2.2 4H6"/></symbol>
+<symbol id="a-x" viewBox="0 0 24 24"><path d="m6.5 6.5 11 11M17.5 6.5l-11 11"/></symbol>
+<symbol id="a-arrow-up" viewBox="0 0 24 24"><path d="M12 19.5V5M6 11l6-6 6 6"/></symbol>
+<symbol id="a-arrow-right" viewBox="0 0 24 24"><path d="M4.5 12h14M13 6.5 18.5 12 13 17.5"/></symbol>
+<symbol id="a-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 4.7-3.4 8-8 9.3-4.6-1.3-8-4.6-8-9.3V6Z"/><path d="m8.7 11.8 2.4 2.4 4.3-4.7"/></symbol>
+<symbol id="a-cloud-off" viewBox="0 0 24 24"><path d="M6.6 19a4.5 4.5 0 0 1-.4-9A6.3 6.3 0 0 1 15 7.4"/><path d="M17.3 10.2A3.8 3.8 0 0 1 17.8 19H10.2"/><path d="m3.6 3.6 16.8 16.8"/></symbol>
+<symbol id="a-trash" viewBox="0 0 24 24"><path d="M4.4 6.6h15.2"/><path d="M9.6 6.6V5a1.6 1.6 0 0 1 1.6-1.6h1.6A1.6 1.6 0 0 1 14.4 5v1.6"/><path d="m6.6 6.6.9 12.4A1.9 1.9 0 0 0 9.4 20.8h5.2a1.9 1.9 0 0 0 1.9-1.8l.9-12.4"/></symbol>
+<symbol id="a-external" viewBox="0 0 24 24"><path d="M14 4.6h5.4V10"/><path d="M19.4 4.6 11 13"/><path d="M17.5 14v4.4a1.6 1.6 0 0 1-1.6 1.6H5.8a1.6 1.6 0 0 1-1.6-1.6V8.2a1.6 1.6 0 0 1 1.6-1.6H10"/></symbol>
+<symbol id="a-copy" viewBox="0 0 24 24"><rect x="8.4" y="8.4" width="11.2" height="11.2" rx="2.4"/><path d="M15.6 5.6a2.4 2.4 0 0 0-2.4-2.4H6.8A2.4 2.4 0 0 0 4.4 5.6v6.4a2.4 2.4 0 0 0 2.4 2.4"/></symbol>
+<symbol id="a-volume" viewBox="0 0 24 24"><path d="M11.5 4.5 6.8 8.6H3.6v6.8h3.2l4.7 4.1Z"/><path d="M15.6 9a4.2 4.2 0 0 1 0 6M18.4 6a8 8 0 0 1 0 12"/></symbol>
+<symbol id="a-clip" viewBox="0 0 24 24"><path d="M19.3 10.7 11 19a4.4 4.4 0 0 1-6.2-6.2l8-8a2.9 2.9 0 0 1 4.2 4.2l-8 8a1.5 1.5 0 0 1-2.1-2.1l7.3-7.3"/></symbol>
+<symbol id="a-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="m8.2 12 2.6 2.6L16 9.2"/></symbol>
+<symbol id="a-record" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="3.4" fill="currentColor" stroke="none"/></symbol>
+<symbol id="a-down" viewBox="0 0 24 24"><path d="M12 4.5v14M6 12.5l6 6 6-6"/></symbol>
+<symbol id="a-book" viewBox="0 0 24 24"><path d="M4.4 5.4A1.8 1.8 0 0 1 6.2 3.6H18a1.6 1.6 0 0 1 1.6 1.6v13.6A1.6 1.6 0 0 1 18 20.4H6.2a1.8 1.8 0 0 1 0-3.6h13.4"/></symbol>
+<symbol id="a-chart" viewBox="0 0 24 24"><path d="M4.4 19.6V14M12 19.6V5M19.6 19.6v-8.4"/></symbol>
+<symbol id="a-mark" viewBox="0 0 1024 1024"><rect width="1024" height="1024" rx="230" fill="#1E1E1E"/><path d="M 483.8 138.2 c -72.8 13.1 -145.6 55.8 -188.6 109.8 -12.2 15.6 -9.7 15.4 17.6 -2.3 49.8 -32.4 109.5 -55.5 163.0 -62.6 59.2 -8.0 54.6 -5.7 55.5 -25.3 1.4 -25.3 -4.0 -27.6 -47.5 -19.6 z M 465.4 200.8 c -107.2 19.6 -206.2 88.2 -211.3 146.5 -2.0 20.8 -1.4 20.8 15.1 -0.6 41.8 -54.3 137.1 -98.7 230.1 -106.7 32.1 -2.8 33.3 -3.4 32.1 -24.7 -0.9 -19.9 -17.1 -23.6 -66.0 -14.5 z M 470.8 260.3 c -142.2 25.9 -240.9 114.6 -209.1 188.6 7.4 17.1 10.0 17.1 12.5 -1.1 9.1 -68.3 96.4 -128.3 209.4 -144.8 49.5 -7.1 46.6 -5.7 47.8 -25.3 1.1 -23.3 -10.5 -26.7 -60.6 -17.4 z M 467.9 322.8 c -149.0 31.0 -221.6 130.0 -153.3 208.5 11.4 13.1 13.9 11.1 8.0 -6.5 -25.0 -73.4 54.3 -147.6 175.2 -163.6 32.4 -4.3 34.1 -5.7 34.1 -22.8 0.0 -25.0 -9.1 -27.3 -64.0 -15.6 z M 422.4 397.9 c -46.4 21.6 -8.2 40.1 105.2 50.3 35.8 3.1 81.9 11.9 111.8 21.3 31.3 10.0 36.1 9.7 27.3 -2.6 -19.6 -26.7 -83.1 -53.5 -149.6 -63.1 -21.3 -3.1 -45.5 -7.1 -53.8 -8.5 -20.8 -4.0 -27.9 -3.4 -41.0 2.6 z M 359.3 442.6 c -25.9 27.6 35.8 49.5 189.4 66.6 31.3 3.4 65.1 11.7 99.0 23.9 25.3 9.1 27.9 9.1 36.4 0.6 27.3 -27.6 -56.0 -62.0 -175.8 -72.8 -40.1 -3.4 -64.3 -8.2 -99.0 -19.9 -33.8 -11.1 -38.1 -10.8 -50.1 1.7 z M 340.2 490.1 c -27.6 27.6 56.0 62.3 175.5 73.1 40.1 3.4 64.3 8.2 99.0 19.9 33.8 11.1 38.1 10.8 50.1 -1.7 25.9 -27.6 -35.8 -49.5 -189.4 -66.6 -31.3 -3.4 -65.1 -11.7 -99.0 -23.9 -25.3 -9.1 -27.9 -9.1 -36.1 -0.9 z M 696.9 484.4 c 0.0 0.6 2.0 7.1 4.6 14.5 25.3 73.7 -54.0 147.9 -175.2 163.8 -32.4 4.3 -34.1 5.7 -34.1 22.8 0.0 24.7 7.4 26.7 58.3 17.1 153.6 -29.9 230.7 -134.0 157.3 -212.8 -5.4 -5.4 -10.8 -8.2 -10.8 -5.4 z M 352.7 549.5 c 0.0 22.2 81.1 59.7 151.6 70.3 20.8 3.1 47.5 7.1 59.4 9.1 23.3 3.7 37.5 0.9 53.2 -11.4 21.9 -16.8 -25.3 -33.0 -120.6 -41.8 -35.3 -3.1 -82.5 -11.9 -110.1 -21.0 -29.9 -9.4 -33.6 -10.0 -33.6 -5.1 z M 752.9 563.2 c -0.9 2.3 -2.8 11.4 -4.6 20.2 -13.4 64.9 -99.8 122.3 -207.9 137.7 -49.5 7.1 -46.6 5.7 -47.8 26.2 -1.1 21.3 1.4 22.5 36.1 19.6 145.9 -11.9 270.5 -116.1 232.7 -193.7 -4.6 -9.1 -7.4 -12.8 -8.5 -10.0 z M 755.8 677.0 c -42.7 54.6 -138.0 99.0 -231.0 107.0 -32.1 2.8 -33.3 3.4 -32.1 24.7 0.9 20.5 12.8 23.3 61.7 15.1 110.4 -19.1 210.2 -87.3 215.6 -147.3 2.0 -20.5 2.0 -20.5 -14.2 0.6 z M 711.1 778.2 c -50.3 33.0 -108.7 55.5 -163.6 62.6 -58.9 8.0 -54.0 5.7 -54.9 26.2 -2.6 53.8 145.6 4.3 219.9 -74.0 33.6 -35.3 33.3 -37.5 -1.4 -14.8 z" fill="#D17D61"/></symbol>
+</defs></svg>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     1 · meetings — the list, and the folder tree that makes it a project
+     Used behind the closing CTA on index.html and pricing.html, the tightest
+     frame on the site, so the content column is .flow--3pane.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="stage" id="meetings" data-id="meetings" style="width:1000px;height:625px">
+  <div class="win">
+    <div class="bar">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="bar__title" style="margin-left:4px">Meetings</div>
+      <div class="bar__meta">18 recorded · 9 this week</div>
+      <div data-tools></div>
+    </div>
+    <div class="win__cols">
+      <div data-rail="meetings"></div>
+      <aside class="pane" style="width:180px;flex-basis:180px">
+        <div class="search"><svg class="ic ic--sm"><use href="#a-search"/></svg>Search meetings</div>
+        <div class="pane__group">
+          <div class="row on"><svg class="ic ic--sm"><use href="#a-home"/></svg><span class="name">All meetings</span><span class="n">18</span></div>
+          <div class="row"><svg class="ic ic--sm"><use href="#a-clock"/></svg><span class="name">Recent</span><span class="n">7</span></div>
+        </div>
+        <div class="pane__label">Folders</div>
+        <div class="pane__group">
+          <div class="row"><svg class="ic ic--sm"><use href="#a-chev-down"/></svg><span class="name">Client Calls</span><span class="n">11</span></div>
+          <div class="row row--nest"><svg class="ic ic--sm"><use href="#a-folder"/></svg><span class="name">Acme</span><span class="n">9</span></div>
+          <div class="row row--nest"><svg class="ic ic--sm"><use href="#a-folder"/></svg><span class="name">Northwind</span><span class="n">1</span></div>
+          <div class="row row--nest"><svg class="ic ic--sm"><use href="#a-folder"/></svg><span class="name">Meridian</span><span class="n">1</span></div>
+          <div class="row"><svg class="ic ic--sm"><use href="#a-chev-down"/></svg><span class="name">Interviews</span><span class="n">2</span></div>
+          <div class="row row--nest"><svg class="ic ic--sm"><use href="#a-folder"/></svg><span class="name">Backend</span><span class="n">1</span></div>
+          <div class="row row--nest"><svg class="ic ic--sm"><use href="#a-folder"/></svg><span class="name">Frontend</span><span class="n">1</span></div>
+          <div class="row"><svg class="ic ic--sm"><use href="#a-chev-right"/></svg><span class="name">Projects</span><span class="n">2</span></div>
+          <div class="row"><svg class="ic ic--sm"><use href="#a-chev-right"/></svg><span class="name">Internal</span><span class="n">2</span></div>
+          <div class="row"><svg class="ic ic--sm"><use href="#a-folder"/></svg><span class="name">Unfiled</span><span class="n">1</span></div>
+          <div class="row row--ghost"><svg class="ic ic--sm"><use href="#a-folder-plus"/></svg><span class="name">Add folder</span></div>
+        </div>
+      </aside>
+      <section class="main">
+        <div class="main__body">
+          <div class="flow flow--3pane">
+            <div class="banner banner--ok" style="align-items:flex-start">
+              <svg class="ic" style="margin-top:1px"><use href="#a-check-circle"/></svg>
+              <span><b>Call detection is on.</b> Scribe will offer to take notes when your next call starts.</span>
+            </div>
+
+            <div class="daylabel">Today <span class="n">· 3 meetings</span></div>
+            <ul class="card list">
+              <li><div class="mtg__title">Acme kickoff</div>
+                  <div class="mtg__who">Client Calls / Acme · 2:14 pm · 34:02</div></li>
+              <li><div class="mtg__title">Design review — onboarding</div>
+                  <div class="mtg__who">Internal · 11:00 am · 22:41</div></li>
+              <li><div class="mtg__title">All-hands — Q3 results</div>
+                  <div class="mtg__who">Q3 planning · 9:30 am · 46:12</div></li>
+            </ul>
+
+            <div class="daylabel">Yesterday <span class="n">· 4 meetings</span></div>
+            <ul class="card list">
+              <li><div class="mtg__title">Candidate screen — Backend</div>
+                  <div class="mtg__who">Interviews / Backend · 4:30 pm · 41:18</div></li>
+              <li><div class="mtg__title">Northwind renewal</div>
+                  <div class="mtg__who">Client Calls / Northwind · 1:05 pm · 27:55</div></li>
+              <li><div class="mtg__title">Intro call — Meridian Health</div>
+                  <div class="mtg__who">Client Calls / Meridian · 11:20 am</div></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     2 · project — the Acme folder, summarising itself
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="stage" id="project" data-id="project" style="width:1000px;height:625px">
+  <div class="win">
+    <div class="bar">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="crumbs" style="margin-left:4px">
+        <span>All meetings</span><span class="sep">/</span>
+        <span>Client Calls</span><span class="sep">/</span>
+        <span class="here">Acme</span>
+      </div>
+      <div data-tools></div>
+    </div>
+    <div class="win__cols">
+      <div data-rail="meetings"></div>
+      <section class="main">
+        <div class="main__body">
+          <div class="flow">
+            <div class="titlerow">
+              <span class="title-tile"><svg class="ic ic--lg"><use href="#a-folder"/></svg></span>
+              <h1 class="title">Acme</h1>
+            </div>
+            <div class="subline">
+              <span>In Client Calls</span><i class="dot"></i>
+              <span>9 calls</span><i class="dot"></i>
+              <span>3 open tasks</span><i class="dot"></i>
+              <span style="color:var(--c-conflict);font-weight:500">3 watchouts</span>
+            </div>
+
+            <div class="card card--alert" style="margin-top:16px">
+              <div class="card__head">
+                <span class="wo__tag" style="background:#F7DCD7;color:var(--c-conflict)">
+                  <svg class="ic"><use href="#a-target"/></svg></span>
+                <div><h3>Meeting watchouts</h3>
+                  <div class="sub">Read across 9 calls in this project</div></div>
+              </div>
+              <div class="legend-row"><div class="legend">
+                <span class="l-conflict">1 conflict</span>
+                <span class="l-discrepancy">1 discrepancy</span>
+                <span class="l-clarify">1 clarification</span>
+              </div></div>
+              <ul class="list">
+                <li><div class="wo wo--conflict">
+                  <span class="wo__tag"><svg class="ic"><use href="#a-conflict"/></svg></span>
+                  <div class="wo__main">
+                    <div class="wo__title">AWS is a hard requirement, the deep-dive is on GCP</div>
+                    <p class="wo__said"><b>Jennifer Walsh</b>, 25:30 — “It all runs in our AWS account.”</p>
+                    <div class="wo__foot"><svg class="ic"><use href="#a-conflict"/></svg>conflicts with
+                      <span class="sep">·</span>Internal scoping note · 4 Aug</div>
+                  </div>
+                </div></li>
+                <li><div class="wo wo--discrepancy">
+                  <span class="wo__tag"><svg class="ic"><use href="#a-neq"/></svg></span>
+                  <div class="wo__main">
+                    <div class="wo__title">400 seats agreed, 250 in the pricing sheet</div>
+                    <p class="wo__said"><b>Jennifer Walsh</b>, 12:52 — “Start us at four hundred seats.”</p>
+                    <div class="wo__foot"><svg class="ic"><use href="#a-neq"/></svg>does not match
+                      <span class="sep">·</span>Acme discovery · 28 Jul</div>
+                  </div>
+                </div></li>
+                <li><div class="wo wo--clarify">
+                  <span class="wo__tag"><svg class="ic"><use href="#a-question"/></svg></span>
+                  <div class="wo__main">
+                    <div class="wo__title">SSO ownership was asked and never answered</div>
+                    <p class="wo__said"><b>You</b>, 21:55 — “Who owns SSO configuration on your side?”</p>
+                    <div class="wo__foot"><svg class="ic"><use href="#a-clock"/></svg>still open since
+                      <span class="sep">·</span>Acme kickoff · 22:03</div>
+                  </div>
+                </div></li>
+              </ul>
+            </div>
+
+            <div class="sec" style="margin-top:20px">
+              <div class="sec__head"><svg class="ic"><use href="#a-doc"/></svg><h3>Summary</h3></div>
+              <p class="prose">Agreed in principle at 400 seats with a March go-live. It now hangs on the revised pricing sheet reaching Jennifer before her internal review, and Legal clearing the addendum.</p>
+            </div>
+            <div class="sec">
+              <div class="sec__head"><svg class="ic"><use href="#a-check-circle"/></svg><h3>Decisions</h3><span class="n">· 12</span></div>
+              <ul class="bullets">
+                <li>400 seats at the starting tier, revisited at 90 days.<span class="at">Acme kickoff</span></li>
+                <li>Go-live targeted for the first week of March.<span class="at">Acme kickoff</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     3 · meeting-notes — the call, written up before you leave it
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="stage" id="meeting-notes" data-id="meeting-notes" style="width:1000px;height:625px">
+  <div class="win">
+    <div class="bar">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="crumbs" style="margin-left:4px">
+        <span>Client Calls</span><span class="sep">/</span>
+        <span>Acme</span><span class="sep">/</span>
+        <span class="here">Acme kickoff</span>
+      </div>
+      <div data-tools></div>
+    </div>
+    <div class="win__cols">
+      <div data-rail="meetings"></div>
+      <section class="main">
+        <div class="main__body">
+          <div class="flow">
+            <h1 class="title">Acme kickoff</h1>
+            <div class="subline">
+              <span class="stack-avatars">
+                <span class="avatar" style="background:#B4522F">J</span>
+                <span class="avatar" style="background:#3A548F">T</span>
+                <span class="avatar" style="background:#2B6E49">M</span></span>
+              <span>3 attendees</span><i class="dot"></i>
+              <span>11 Aug 2026, 2:14 pm</span><i class="dot"></i>
+              <span>34:02</span>
+            </div>
+
+            <div class="banner banner--alert" style="margin-top:16px;align-items:flex-start">
+              <svg class="ic" style="margin-top:1px"><use href="#a-target"/></svg>
+              <span><b>3 watchouts from this call</b> — AWS is a hard requirement, but the deep-dive is being scoped on GCP, and 2 more.</span>
+            </div>
+            <div class="banner banner--ok" style="margin-top:9px;align-items:flex-start">
+              <svg class="ic" style="margin-top:1px"><use href="#a-check-circle"/></svg>
+              <span><b>3 tasks added to Tasks</b> — owners and dates taken from what was said.</span>
+            </div>
+
+            <nav class="tabs" style="margin-top:20px">
+              <a class="on"><svg class="ic ic--sm"><use href="#a-sparkle"/></svg>AI notes</a>
+              <a><svg class="ic ic--sm"><use href="#a-target"/></svg>Watchouts <span class="pill pill--danger">3</span></a>
+              <a><svg class="ic ic--sm"><use href="#a-doc"/></svg>My notes</a>
+              <a><svg class="ic ic--sm"><use href="#a-list"/></svg>Transcript</a>
+            </nav>
+
+            <div class="genline">
+              <svg class="ic ic--sm"><use href="#a-sparkle"/></svg>
+              Generated 2:49 pm from your notes and the transcript.
+              <span class="btn btn--quiet btn--sm" style="margin-left:auto">
+                <svg class="ic ic--sm"><use href="#a-copy"/></svg>Copy</span>
+            </div>
+
+            <div class="sec" style="margin-top:16px">
+              <div class="sec__head"><svg class="ic"><use href="#a-doc"/></svg><h3>Summary</h3></div>
+              <p class="prose">Jennifer confirmed a 400-seat starting licence with a March go-live, contingent on revised pricing landing before her internal review on Friday. Tom raised the data-processing addendum as a blocker for signature, and both sides agreed a technical deep-dive is needed before scoping the migration.</p>
+            </div>
+            <div class="sec">
+              <div class="sec__head"><svg class="ic"><use href="#a-check-circle"/></svg><h3>Decisions</h3><span class="n">· 3</span></div>
+              <ul class="bullets">
+                <li>400 seats at the starting tier, revisited at 90 days.<span class="at">12:04</span></li>
+                <li>Go-live targeted for the first week of March.<span class="at">18:40</span></li>
+                <li>Acme’s platform team joins the deep-dive.<span class="at">27:12</span></li>
+              </ul>
+            </div>
+            <div class="sec">
+              <div class="sec__head"><svg class="ic"><use href="#a-question"/></svg><h3>Open questions</h3><span class="n">· 1</span></div>
+              <ul class="bullets">
+                <li>Who owns SSO configuration on Acme’s side? Not answered.<span class="at">21:55</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     4 · watchouts — the watchouts tab of one call
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="stage" id="watchouts" data-id="watchouts" style="width:1000px;height:625px">
+  <div class="win">
+    <div class="bar">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="crumbs" style="margin-left:4px">
+        <span>Client Calls</span><span class="sep">/</span>
+        <span>Acme</span><span class="sep">/</span>
+        <span class="here">Acme kickoff</span>
+      </div>
+      <div data-tools></div>
+    </div>
+    <div class="win__cols">
+      <div data-rail="meetings"></div>
+      <section class="main">
+        <div class="main__body">
+          <div class="flow">
+            <h1 class="title">Acme kickoff</h1>
+            <div class="subline">
+              <span class="stack-avatars">
+                <span class="avatar" style="background:#B4522F">J</span>
+                <span class="avatar" style="background:#3A548F">T</span>
+                <span class="avatar" style="background:#2B6E49">M</span></span>
+              <span>3 attendees</span><i class="dot"></i>
+              <span>11 Aug 2026, 2:14 pm</span><i class="dot"></i>
+              <span>34:02</span>
+            </div>
+
+            <nav class="tabs" style="margin-top:20px">
+              <a><svg class="ic ic--sm"><use href="#a-sparkle"/></svg>AI notes</a>
+              <a class="on"><svg class="ic ic--sm"><use href="#a-target"/></svg>Watchouts <span class="pill pill--danger">3</span></a>
+              <a><svg class="ic ic--sm"><use href="#a-doc"/></svg>My notes</a>
+              <a><svg class="ic ic--sm"><use href="#a-list"/></svg>Transcript</a>
+            </nav>
+
+            <div class="seg" style="margin-top:16px">
+              <a class="on">All <span class="pill pill--brand">3</span></a>
+              <a><svg class="ic ic--sm" style="color:var(--c-conflict)"><use href="#a-conflict"/></svg>Conflicts <span class="pill">1</span></a>
+              <a><svg class="ic ic--sm" style="color:var(--c-discrepancy)"><use href="#a-neq"/></svg>Discrepancies <span class="pill">1</span></a>
+              <a><svg class="ic ic--sm" style="color:var(--c-clarify)"><use href="#a-question"/></svg>Clarifications <span class="pill">1</span></a>
+            </div>
+
+            <div class="card" style="margin-top:16px">
+              <ul class="list">
+                <li><div class="wo wo--conflict">
+                  <span class="wo__tag"><svg class="ic"><use href="#a-conflict"/></svg></span>
+                  <div class="wo__main">
+                    <div class="wo__title">AWS is a hard requirement, but the deep-dive is being scoped on GCP</div>
+                    <p class="wo__said"><b>Jennifer Walsh</b>, 25:30 — “One thing to be clear on — everything runs in our AWS account.”</p>
+                    <div class="wo__foot"><svg class="ic"><use href="#a-conflict"/></svg>conflicts with
+                      <span class="sep">·</span>Internal scoping note · 4 Aug 2026</div>
+                  </div>
+                </div></li>
+                <li><div class="wo wo--discrepancy">
+                  <span class="wo__tag"><svg class="ic"><use href="#a-neq"/></svg></span>
+                  <div class="wo__main">
+                    <div class="wo__title">400 seats today, 250 in the pricing sheet you are about to send</div>
+                    <p class="wo__said"><b>Jennifer Walsh</b>, 12:52 — “Start us at four hundred seats and we will revisit at ninety days.”</p>
+                    <div class="wo__foot"><svg class="ic"><use href="#a-neq"/></svg>does not match
+                      <span class="sep">·</span>Acme discovery · 28 Jul 2026</div>
+                  </div>
+                </div></li>
+                <li><div class="wo wo--clarify">
+                  <span class="wo__tag"><svg class="ic"><use href="#a-question"/></svg></span>
+                  <div class="wo__main">
+                    <div class="wo__title">SSO ownership was asked and never came back</div>
+                    <p class="wo__said"><b>You</b>, 21:55 — “And who owns SSO configuration on your side?”</p>
+                    <div class="wo__foot"><svg class="ic"><use href="#a-clock"/></svg>still open since
+                      <span class="sep">·</span>earlier in this call · 22:03</div>
+                  </div>
+                </div></li>
+              </ul>
+              <div class="card__foot">
+                <svg class="ic ic--sm"><use href="#a-target"/></svg>
+                Read against 18 recorded meetings and this project’s history.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     5 · watch-panel — one watchout opened in place, so both sides are visible
+     The old shot docked this as a fourth column on the right, where the page
+     frame cut the quotes in half. Expanded inline it survives every crop.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="stage" id="watch-panel" data-id="watch-panel" style="width:1000px;height:625px">
+  <div class="win">
+    <div class="bar">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="crumbs" style="margin-left:4px">
+        <span>Acme</span><span class="sep">/</span>
+        <span>Acme kickoff</span><span class="sep">/</span>
+        <span class="here">Watchouts</span>
+      </div>
+      <div data-tools></div>
+    </div>
+    <div class="win__cols">
+      <div data-rail="meetings"></div>
+      <section class="main">
+        <div class="main__body">
+          <div class="flow">
+            <div class="titlerow">
+              <span class="title-tile" style="background:var(--c-discrepancy-soft);color:var(--c-discrepancy)">
+                <svg class="ic ic--lg"><use href="#a-neq"/></svg></span>
+              <div>
+                <h1 class="side__title">400 seats today, 250 in the pricing<br>sheet you are about to send</h1>
+                <div class="tagset">
+                  <span class="tag tag--discrepancy"><svg class="ic"><use href="#a-neq"/></svg>Discrepancy</span>
+                  <span class="tag tag--open">Open</span>
+                  <span class="when">18 min ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="side__label">What collides</div>
+            <div class="card">
+              <div class="collide">
+                <div class="collide__side">
+                  <div class="collide__label"><svg class="ic"><use href="#a-mic"/></svg>In this meeting</div>
+                  <p class="collide__quote">“Start us at four hundred seats and we will revisit at ninety days.”</p>
+                  <div class="collide__who"><b>Jennifer Walsh</b>Acme kickoff · 12:52</div>
+                  <span class="collide__link"><svg class="ic"><use href="#a-play"/></svg>Jump to 12:52</span>
+                </div>
+                <div class="collide__side">
+                  <div class="collide__label"><svg class="ic"><use href="#a-history"/></svg>Project history</div>
+                  <p class="collide__quote">“We are budgeting for 250 licences in year one, and would rather start small.”</p>
+                  <div class="collide__who"><b>Jennifer Walsh</b>Acme discovery · 28 Jul 2026</div>
+                  <span class="collide__link"><svg class="ic"><use href="#a-doc"/></svg>Open the source note</span>
+                </div>
+              </div>
+              <div class="verdict"><svg class="ic"><use href="#a-neq"/></svg>Does not match</div>
+              <div style="padding:14px 16px">
+                <div class="side__label" style="margin:0 0 8px">Why it matters</div>
+                <p class="why">The revised sheet due to Jennifer on Thursday is built on the 250 licences agreed at discovery. A 60% jump moves Acme into the next tier, so the sheet would be wrong on arrival.</p>
+              </div>
+            </div>
+
+            <div class="say">
+              <div class="say__label"><svg class="ic"><use href="#a-volume"/></svg>If you want it said out loud</div>
+              <p class="say__text">“Before I send the sheet through — are we pricing four hundred seats now, or the two hundred and fifty from discovery?”</p>
+              <div class="say__acts">
+                <span class="btn btn--quiet btn--sm"><svg class="ic ic--sm"><use href="#a-copy"/></svg>Copy wording</span>
+                <span class="btn btn--quiet btn--sm"><svg class="ic ic--sm"><use href="#a-arrow-up"/></svg>Draft a follow-up</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     6 · tasks — commitments, with the call they came from
+     Dates sit in the meta line, not right-aligned: the frame crops the right
+     edge, and a due date is the one thing on a task row you cannot lose.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="stage" id="tasks" data-id="tasks" style="width:1000px;height:625px">
+  <div class="win">
+    <div class="bar">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="bar__title" style="margin-left:4px">Tasks</div>
+      <div class="bar__meta">9 open · 2 overdue</div>
+      <div data-tools></div>
+    </div>
+    <div class="win__cols">
+      <div data-rail="tasks"></div>
+      <section class="main">
+        <div class="main__body">
+          <div class="flow">
+            <div class="seg">
+              <a class="on">All <span class="pill pill--brand">9</span></a>
+              <a>Overdue <span class="pill pill--danger">2</span></a>
+              <a>Today <span class="pill">2</span></a>
+              <a>Upcoming <span class="pill">5</span></a>
+            </div>
+
+            <div class="addtask"><svg class="ic ic--sm"><use href="#a-plus"/></svg>Add a task…</div>
+
+            <div class="daylabel" style="margin-top:20px;color:var(--c-conflict)">
+              <svg class="ic ic--sm"><use href="#a-info"/></svg>Overdue <span class="n">· 2</span></div>
+            <ul class="card list">
+              <li><div class="task"><span class="box"></span><div class="task__main">
+                <div class="task__title">Send the revised pricing sheet to Jennifer</div>
+                <div class="task__meta">
+                  <span class="flag flag--high"><svg class="ic"><use href="#a-flag"/></svg>High</span>
+                  <span class="due due--late">2 days late</span>
+                  <span>Acme kickoff</span></div>
+              </div></div></li>
+              <li><div class="task"><span class="box"></span><div class="task__main">
+                <div class="task__title">Loop in Legal on the data-processing addendum</div>
+                <div class="task__meta">
+                  <span class="flag flag--high"><svg class="ic"><use href="#a-flag"/></svg>High</span>
+                  <span class="due due--late">Yesterday</span>
+                  <span>Acme kickoff</span></div>
+              </div></div></li>
+            </ul>
+
+            <div class="daylabel">Today <span class="n">· 2</span></div>
+            <ul class="card list">
+              <li><div class="task"><span class="box"></span><div class="task__main">
+                <div class="task__title">Share the onboarding flow with Emily for review</div>
+                <div class="task__meta">
+                  <span class="flag flag--med"><svg class="ic"><use href="#a-flag"/></svg>Medium</span>
+                  <span class="due due--soon">5:00 pm</span>
+                  <span>Design review</span></div>
+              </div></div></li>
+              <li><div class="task"><span class="box"></span><div class="task__main">
+                <div class="task__title">Confirm the renewal figure with Robert before sending</div>
+                <div class="task__meta">
+                  <span class="flag flag--med"><svg class="ic"><use href="#a-flag"/></svg>Medium</span>
+                  <span class="due due--soon">Today</span>
+                  <span>Northwind renewal</span></div>
+              </div></div></li>
+            </ul>
+
+            <div class="daylabel">Upcoming <span class="n">· 5</span></div>
+            <ul class="card list">
+              <li><div class="task"><span class="box"></span><div class="task__main">
+                <div class="task__title">Book a technical deep-dive for the week of the 25th</div>
+                <div class="task__meta"><span class="due">Thu 14 Aug</span><span>Acme kickoff</span></div>
+              </div></div></li>
+              <li><div class="task"><span class="box"></span><div class="task__main">
+                <div class="task__title">Send Q3 headcount numbers to Ashley</div>
+                <div class="task__meta">
+                  <span class="flag flag--high"><svg class="ic"><use href="#a-flag"/></svg>High</span>
+                  <span class="due">Fri 15 Aug</span><span>Q3 planning</span></div>
+              </div></div></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     7 · speech — hold a key, talk, keep typing
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="stage" id="speech" data-id="speech" style="width:1000px;height:625px">
+  <div class="win">
+    <div class="bar">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="bar__title" style="margin-left:4px">Speech to Text</div>
+      <div class="bar__meta">3 today · 48 kept</div>
+      <div data-tools></div>
+    </div>
+    <div class="win__cols">
+      <div data-rail="speech"></div>
+      <section class="main">
+        <div class="main__body">
+          <div class="flow">
+            <div class="hold">
+              <span class="hold__btn"><svg class="ic"><use href="#a-mic"/></svg>Hold <span class="kbd">Fn</span> to talk</span>
+              <div class="hold__state">
+                <div class="live">Ready · MacBook Air Microphone</div>
+                <div class="sub">On device · audio never leaves your Mac</div>
+              </div>
+            </div>
+            <div class="holdfoot">
+              <div class="wave" data-wave style="flex:1 1 auto"></div>
+              <span style="flex:0 0 auto">Input level</span>
+            </div>
+
+            <div class="seg" style="margin-top:20px">
+              <a class="on">Today <span class="pill pill--brand">3</span></a>
+              <a>This week <span class="pill">6</span></a>
+              <a>All transcripts <span class="pill">48</span></a>
+            </div>
+
+            <div class="daylabel">Today <span class="n">· 3 transcripts</span></div>
+            <ul class="card list">
+              <li><div class="dict">
+                <svg class="ic ic--sm"><use href="#a-doc"/></svg>
+                <div><p class="dict__text">Hold the pricing sheet until Legal has cleared the addendum.</p>
+                  <div class="dict__meta">2:41 pm · pasted into Notes</div></div>
+              </div></li>
+              <li><div class="dict">
+                <svg class="ic ic--sm"><use href="#a-doc"/></svg>
+                <div><p class="dict__text">The deep-dive should cover the migration path before we scope it.</p>
+                  <div class="dict__meta">2:39 pm · pasted into Linear · edited</div></div>
+              </div></li>
+              <li><div class="dict">
+                <svg class="ic ic--sm"><use href="#a-doc"/></svg>
+                <div><p class="dict__text">Ask Ashley for the Q3 headcount numbers by Friday.</p>
+                  <div class="dict__meta">2:37 pm · copied to clipboard</div></div>
+              </div></li>
+            </ul>
+
+            <div class="stats-line">
+              <span><b>96%</b>kept after editing</span>
+              <span><b>1.2s</b>hold to paste</span>
+              <span><b>4</b>terms learned</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     8 · assistant — an answer that cites the call it came from
+     The thread is left-aligned rather than a chat with right-hand bubbles:
+     a right-hand bubble is the first thing the frame would slice off.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="stage" id="assistant" data-id="assistant" style="width:1000px;height:625px">
+  <div class="win">
+    <div class="bar">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="crumbs" style="margin-left:4px">
+        <span>AI Assistant</span><span class="sep">/</span>
+        <span class="here">Acme kickoff tasks</span>
+      </div>
+      <div data-tools></div>
+    </div>
+    <div class="win__cols">
+      <div data-rail="ai"></div>
+      <section class="main">
+        <div class="main__body">
+          <div class="flow">
+            <div class="thread">
+              <div class="turn">
+                <div class="turn__who"><span class="avatar" style="width:22px;height:22px;flex-basis:22px;font-size:10px">M</span>You</div>
+                <p class="turn__body">What did I commit to on the Acme kickoff?</p>
+              </div>
+              <div class="turn">
+                <div class="turn__who"><span class="msg__bot"><svg viewBox="0 0 1024 1024"><use href="#a-mark"/></svg></span>Scribe</div>
+                <div class="turn__body">
+                  You made three commitments on that call:
+                  <ol>
+                    <li>Send the revised pricing sheet to Jennifer by <b>Friday</b>.</li>
+                    <li>Loop in Legal on the data-processing addendum.</li>
+                    <li>Book a technical deep-dive for the week of the 25th.</li>
+                  </ol>
+                  <p style="margin-top:8px">All three are already on your task list.</p>
+                  <span class="cite"><svg class="ic"><use href="#a-users"/></svg>Acme kickoff · 11 Aug · from 12:04</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="composer">
+          <svg class="ic ic--sm"><use href="#a-clip"/></svg>
+          <svg class="ic ic--sm"><use href="#a-mic"/></svg>
+          Ask about your meetings…
+          <span class="send"><svg class="ic"><use href="#a-arrow-up"/></svg></span>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     CROPS — single components, no window chrome. The marketing page rounds
+     them and drops the shadow (.chip-shot), so they render square and flat.
+     ═══════════════════════════════════════════════════════════════════════ -->
+
+<div class="stage crop" id="c-watchout" data-id="c-watchout" style="width:420px">
+  <div class="card card--alert" style="border:0;border-radius:0">
+    <div class="card__head">
+      <span class="wo__tag" style="background:#F7DCD7;color:var(--c-conflict)">
+        <svg class="ic"><use href="#a-target"/></svg></span>
+      <div><h3>Meeting watchouts</h3><div class="sub">Read across 9 calls in this project</div></div>
+    </div>
+    <div class="legend-row"><div class="legend">
+      <span class="l-conflict">1 conflict</span>
+      <span class="l-discrepancy">1 discrepancy</span>
+      <span class="l-clarify">1 clarification</span>
+    </div></div>
+    <ul class="list">
+      <li><div class="wo wo--conflict">
+        <span class="wo__tag"><svg class="ic"><use href="#a-conflict"/></svg></span>
+        <div class="wo__main">
+          <div class="wo__title">AWS is a hard requirement, but the deep-dive is scoped on GCP</div>
+          <div class="wo__foot"><svg class="ic"><use href="#a-conflict"/></svg>conflicts with
+            <span class="sep">·</span>Internal scoping note</div>
+        </div>
+      </div></li>
+      <li><div class="wo wo--discrepancy">
+        <span class="wo__tag"><svg class="ic"><use href="#a-neq"/></svg></span>
+        <div class="wo__main">
+          <div class="wo__title">400 seats today, 250 in the pricing sheet</div>
+          <div class="wo__foot"><svg class="ic"><use href="#a-neq"/></svg>does not match
+            <span class="sep">·</span>Acme discovery</div>
+        </div>
+      </div></li>
+      <li><div class="wo wo--clarify">
+        <span class="wo__tag"><svg class="ic"><use href="#a-question"/></svg></span>
+        <div class="wo__main">
+          <div class="wo__title">SSO ownership was asked and never came back</div>
+          <div class="wo__foot"><svg class="ic"><use href="#a-clock"/></svg>still open
+            <span class="sep">·</span>Acme kickoff · 22:03</div>
+        </div>
+      </div></li>
+    </ul>
+  </div>
+</div>
+
+<div class="stage crop" id="c-tasks" data-id="c-tasks" style="width:420px">
+  <div class="card" style="border:0;border-radius:0">
+    <div class="card__head" style="padding:12px 16px">
+      <svg class="ic ic--sm" style="color:var(--c-ink-3)"><use href="#a-list"/></svg>
+      <h3 style="font-size:var(--f-15)">Open tasks</h3>
+      <span style="font-size:var(--f-13);color:var(--c-ink-3)">· 3</span>
+    </div>
+    <ul class="list">
+      <li><div class="task"><span class="box"></span><div class="task__main">
+        <div class="task__title">Send the revised pricing sheet to Jennifer</div>
+        <div class="task__meta">
+          <span class="flag flag--high"><svg class="ic"><use href="#a-flag"/></svg>High</span>
+          <span class="due due--late">2 days late</span></div>
+      </div></div></li>
+      <li><div class="task"><span class="box"></span><div class="task__main">
+        <div class="task__title">Loop in Legal on the data-processing addendum</div>
+        <div class="task__meta">
+          <span class="flag flag--high"><svg class="ic"><use href="#a-flag"/></svg>High</span>
+          <span class="due due--late">Yesterday</span></div>
+      </div></div></li>
+    </ul>
+  </div>
+</div>
+
+<div class="stage crop" id="c-tasks-lg" data-id="c-tasks-lg" style="width:620px">
+  <div class="card" style="border:0;border-radius:0">
+    <div class="card__head" style="padding:12px 18px">
+      <svg class="ic ic--sm" style="color:var(--c-ink-3)"><use href="#a-list"/></svg>
+      <h3 style="font-size:var(--f-15)">Tasks from this call</h3>
+      <span style="font-size:var(--f-13);color:var(--c-ink-3)">· 3</span>
+      <span style="margin-left:auto;font-size:var(--f-13);font-weight:500;color:var(--c-brand)">View in Tasks ›</span>
+    </div>
+    <ul class="list">
+      <li style="padding:14px 18px"><div class="task"><span class="box"></span><div class="task__main">
+        <div class="task__title">Send the revised pricing sheet to Jennifer</div>
+        <div class="task__meta">
+          <span class="flag flag--high"><svg class="ic"><use href="#a-flag"/></svg>High</span>
+          <span class="due due--late">2 days late</span>
+          <span><svg class="ic" style="display:inline-block;vertical-align:-2px"><use href="#a-users"/></svg> Acme kickoff</span></div>
+      </div></div></li>
+      <li style="padding:14px 18px"><div class="task"><span class="box"></span><div class="task__main">
+        <div class="task__title">Loop in Legal on the data-processing addendum</div>
+        <div class="task__meta">
+          <span class="flag flag--high"><svg class="ic"><use href="#a-flag"/></svg>High</span>
+          <span class="due due--late">Yesterday</span>
+          <span><svg class="ic" style="display:inline-block;vertical-align:-2px"><use href="#a-users"/></svg> Acme kickoff</span></div>
+      </div></div></li>
+      <li style="padding:14px 18px"><div class="task"><span class="box"></span><div class="task__main">
+        <div class="task__title">Book a technical deep-dive for the week of the 25th</div>
+        <div class="task__meta">
+          <span class="due">Thu 14 Aug</span>
+          <span><svg class="ic" style="display:inline-block;vertical-align:-2px"><use href="#a-users"/></svg> Acme kickoff</span></div>
+      </div></div></li>
+    </ul>
+  </div>
+</div>
+
+<div class="stage crop" id="c-compare" data-id="c-compare" style="width:650px">
+  <div class="card" style="border:0;border-radius:0">
+    <div class="collide">
+      <div class="collide__side">
+        <div class="collide__label"><svg class="ic"><use href="#a-mic"/></svg>In this meeting</div>
+        <p class="collide__quote">“Start us at four hundred seats and we will revisit at ninety days.”</p>
+        <div class="collide__who"><b>Jennifer Walsh</b>Acme kickoff · 12:52</div>
+        <span class="collide__link"><svg class="ic"><use href="#a-play"/></svg>Jump to 12:52</span>
+      </div>
+      <div class="collide__side">
+        <div class="collide__label"><svg class="ic"><use href="#a-history"/></svg>Project history</div>
+        <p class="collide__quote">“We are budgeting for 250 licences in year one, and would rather start small.”</p>
+        <div class="collide__who"><b>Jennifer Walsh</b>Acme discovery · 28 Jul 2026</div>
+        <span class="collide__link"><svg class="ic"><use href="#a-doc"/></svg>Open the source note</span>
+      </div>
+    </div>
+    <div class="verdict"><svg class="ic"><use href="#a-neq"/></svg>Does not match</div>
+  </div>
+</div>
+
+<!-- the results card is the one chip slot the page positions rather than
+     centres, and it is a tall box, so the comparison stacks there instead of
+     sitting in two columns. -->
+<div class="stage crop" id="c-compare-tall" data-id="c-compare-tall" style="width:500px">
+  <div class="card" style="border:0;border-radius:0">
+    <div class="collide collide--stacked">
+      <div class="collide__side">
+        <div class="collide__label"><svg class="ic"><use href="#a-mic"/></svg>In this meeting</div>
+        <p class="collide__quote">“Start us at four hundred seats and we will revisit at ninety days.”</p>
+        <div class="collide__who"><b>Jennifer Walsh</b>Acme kickoff · 12:52</div>
+      </div>
+      <div class="verdict"><svg class="ic"><use href="#a-neq"/></svg>Does not match</div>
+      <div class="collide__side">
+        <div class="collide__label"><svg class="ic"><use href="#a-history"/></svg>Project history</div>
+        <p class="collide__quote">“We are budgeting for 250 licences in year one, and would rather start small.”</p>
+        <div class="collide__who"><b>Jennifer Walsh</b>Acme discovery · 28 Jul 2026</div>
+      </div>
+    </div>
+    <div class="card__foot" style="border-top:1px solid var(--c-line)">
+      <svg class="ic ic--sm"><use href="#a-target"/></svg>A 60% jump moves Acme into the next tier.
+    </div>
+  </div>
+</div>
+
+<div class="stage crop" id="c-speech-tall" data-id="c-speech-tall" style="width:420px">
+  <div style="background:var(--c-bg);padding:16px">
+    <div class="hold" style="padding:14px">
+      <span class="hold__btn"><svg class="ic"><use href="#a-mic"/></svg>Hold <span class="kbd">Fn</span> to talk</span>
+      <div class="hold__state">
+        <div class="live">Ready</div>
+        <div class="sub">On device</div>
+      </div>
+    </div>
+    <div class="holdfoot" style="padding:12px 2px 0">
+      <div class="wave" data-wave></div>
+    </div>
+    <div class="daylabel" style="margin-top:14px">Today <span class="n">· 3 transcripts</span></div>
+    <ul class="card list">
+      <li><div class="dict">
+        <svg class="ic ic--sm"><use href="#a-doc"/></svg>
+        <div><p class="dict__text">Hold the pricing sheet until Legal has cleared the addendum.</p>
+          <div class="dict__meta">2:41 pm · pasted into Notes</div></div>
+      </div></li>
+      <li><div class="dict">
+        <svg class="ic ic--sm"><use href="#a-doc"/></svg>
+        <div><p class="dict__text">Ask Ashley for the Q3 headcount numbers by Friday.</p>
+          <div class="dict__meta">2:37 pm · copied to clipboard</div></div>
+      </div></li>
+    </ul>
+  </div>
+</div>
+
+<div class="stage crop" id="c-privacy" data-id="c-privacy" style="width:620px">
+  <div style="background:var(--c-bg);padding:18px;display:flex;flex-direction:column;gap:14px">
+    <div class="card">
+      <div class="set__head">
+        <svg class="ic"><use href="#a-shield"/></svg>
+        <div><b>On this Mac</b> <span>— nothing here is uploaded</span></div>
+      </div>
+      <ul class="list">
+        <li><div class="set"><div class="set__main">
+          <b>Recordings and transcripts</b>
+          <p>Stored on this Mac only. 48 transcripts, 18 meetings, 2.1 GB.</p>
+        </div><span class="btn btn--quiet btn--sm">Show in Finder</span></div></li>
+        <li><div class="set"><div class="set__main">
+          <b>Delete everything</b>
+          <p>Removes all meetings, transcripts and tasks from this Mac. Cannot be undone.</p>
+        </div><span class="btn btn--quiet btn--sm">Delete all data</span></div></li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="set__head">
+        <svg class="ic"><use href="#a-cloud-off"/></svg>
+        <div><b>What leaves this Mac</b> <span>— only what you turn on</span></div>
+      </div>
+      <ul class="list">
+        <li><div class="set"><div class="set__main">
+          <b>Cloud transcription</b>
+          <p>Off — dictation runs entirely on this Mac.</p>
+        </div><span class="state state--off">Off</span></div></li>
+        <li><div class="set"><div class="set__main">
+          <b>Assistant replies</b>
+          <p>Off — no API key is set.</p>
+        </div><span class="state state--off">Off</span></div></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+/* The left rail and the title-bar tool icons are identical in every view, so
+   they are written once here and expanded before render.py takes the shot.
+   This file is a render source, never shipped, so a build step is fine. */
+const ON = { meetings:0, speech:1, tasks:2, ai:3 };
+document.querySelectorAll('[data-rail]').forEach(el => {
+  const i = ON[el.dataset.rail];
+  const item = (n, icon, label) =>
+    `<a class="${n === i ? 'on' : ''}"><svg class="ic"><use href="#a-${icon}"/></svg>${label}</a>`;
+  el.outerHTML = `<aside class="rail">
+      <div class="rail__label">Workspace</div>
+      <nav class="rail__nav">
+        ${item(0,'users','Meetings')}${item(1,'wave','Speech to Text')}
+        ${item(2,'check-square','Tasks')}${item(3,'sparkle','AI Assistant')}
+      </nav>
+      <div class="rail__foot">
+        <span class="avatar">M</span>
+        <span class="rail__who"><b>Michael Chen</b><span>Team plan</span></span>
+      </div>
+    </aside>`;
+});
+document.querySelectorAll('[data-tools]').forEach(el => {
+  el.outerHTML = `<div class="bar__tools">
+      <span class="tool"><svg class="ic"><use href="#a-sliders"/></svg></span>
+      <span class="tool"><svg class="ic"><use href="#a-help"/></svg></span>
+      <span class="tool"><svg class="ic"><use href="#a-bell"/></svg><i class="dot"></i></span>
+    </div>`;
+});
+/* the input-level meter: a fixed, seeded shape so every render is identical */
+document.querySelectorAll('[data-wave]').forEach(el => {
+  let s = 7, out = '';
+  for (let i = 0; i < 86; i++) {
+    s = (s * 1103515245 + 12345) & 0x7fffffff;
+    const t = (s / 0x7fffffff);
+    const h = 2 + Math.round(t * t * 15 * (0.35 + 0.65 * Math.sin(i / 86 * Math.PI)));
+    out += `<i style="height:${h}px"></i>`;
+  }
+  el.innerHTML = out;
+});
+</script>
+</body>
+</html>

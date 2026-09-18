@@ -23,16 +23,16 @@
 .btn:active { transform: translateY(1px); }
 
 .btn--primary {
-  background: var(--ink);
-  color: var(--bg);
-  box-shadow: var(--shadow-sm);
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 8px 20px -12px rgba(143, 68, 35, .55), var(--shadow-sm);
 }
-.btn--primary:hover { background: #2E2B24; }
+.btn--primary:hover { background: var(--accent-ink); }
 
 .btn--accent {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 8px 22px -12px rgba(5, 72, 207, .75);
+  box-shadow: 0 8px 22px -12px rgba(143, 68, 35, .6);
 }
 .btn--accent:hover { background: var(--accent-ink); }
 
@@ -150,15 +150,14 @@
   flex: 0 0 auto;
 }
 .brand__mark {
+  /* the mark is the whole tile — dark ground, terracotta ribbon — so the box
+     carries no background of its own. Its corner radius comes from the SVG. */
   width: 28px; height: 28px;
-  border-radius: 8px;
-  background: var(--ink);
-  color: var(--bg);
   display: grid;
   place-items: center;
   flex: 0 0 auto;
 }
-.brand__mark svg { width: 16px; height: 16px; }
+.brand__mark svg { width: 28px; height: 28px; }
 
 .nav__links {
   display: flex;
@@ -656,7 +655,7 @@ body.menu-open .mobile-menu { opacity: 1; visibility: visible; transform: none; 
 .input:focus, .textarea:focus, .select:focus {
   outline: 0;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(5, 72, 207, .12);
+  box-shadow: 0 0 0 3px rgba(180, 82, 47, .14);
 }
 .search {
   position: relative;
